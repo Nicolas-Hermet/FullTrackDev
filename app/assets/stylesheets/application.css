@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   background-color: #000;
+   color: #fff;
+ }
+ 
+ #container {
+  position: relative;
+  height: 1080px;
+}
+.tagcloud,
+.same-as-tagcloud {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.6;
+  font-family: "Montserrat",sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  position: absolute;
+  left: 50px;
+}
+
+.same-as-tagcloud {
+  width: 800px;
+  height: 800px;
+  line-height: 800px;
+  text-align: center;
+  font-size: 68px;
+  font-weight: 900;
+}
