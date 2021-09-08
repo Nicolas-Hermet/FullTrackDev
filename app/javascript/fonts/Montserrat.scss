@@ -1,0 +1,33 @@
+// // https://www.fontsquirrel.com/fonts/montserrat
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./Montserrat-Black.eot');
+	src: local('☺'), url('./Montserrat-Black.woff') format('woff'), url('./Montserrat-Black.ttf') format('truetype'), url('./Montserrat-Black.svg') format('svg');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./Montserrat-Bold.eot');
+	src: local('☺'), url('./Montserrat-Bold.woff') format('woff'), url('./Montserrat-Bold.ttf') format('truetype'), url('./Montserrat-Bold.svg') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./Montserrat-Regular.eot');
+	src: local('☺'), url('./Montserrat-Regular.woff') format('woff'), url('./Montserrat-Regular.ttf') format('truetype'), url('./Montserrat-Regular.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./Montserrat-Light.eot');
+	src: local('☺'), url('./Montserrat-Light.woff') format('woff'), url('./Montserrat-Light.ttf') format('truetype'), url('./Montserrat-Light.svg') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
