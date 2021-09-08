@@ -2,7 +2,7 @@ import TagCloud from 'TagCloud'
 
 const container = '.tagcloud';
 const texts = [
-    'Backend Developer', 'Frontend Developer', 'Racing Driver', 'Remote Advisor', 'Engineer'
+    'a Backend Developer', 'a Frontend Developer', 'a Racing Driver', 'a Remote Advisor', 'an Engineer'
 ];
 const options = {
   radius: 400, 

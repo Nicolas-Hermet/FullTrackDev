@@ -1,0 +1,36 @@
+nav {
+  /* width: 100%; */
+  padding: 0 20px;
+  margin: 0;
+  top: 0px;
+  left: 0px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.menu-text {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-item {
+  list-style: none;
+  color: #fff;
+  margin: 5px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3 ease;
+}
+
+.nav-link:hover {
+  color: #f6f4e6;
+}
