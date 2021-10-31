@@ -11,6 +11,15 @@ import 'styles/navbar'
 import 'styles/button'
 import 'fonts/Montserrat'
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
+
+import myImageUrl from '../images/nico.png';
+
+let myImage = new Image();
+myImage.src = myImageUrl;
+myImage.alt = "I'm a Webpacker-bundled image";
+document.body.appendChild(myImage);
+const images = require.context("../images", true);
+const imagePath = name => images(name, true);
