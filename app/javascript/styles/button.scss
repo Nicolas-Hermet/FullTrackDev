@@ -1,0 +1,26 @@
+.btn {
+  position: relative;
+  padding: 5px 17px 5px 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+}
+
+.btn-background {
+  position: absolute;
+  top: 0;
+  left: clamp(15px, 30%, 50px);
+  right: 0;
+  height: 100%;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #0f33ff;
+  z-index: -1;
+  transition: left .2s ease-in-out;
+}
+
+.btn:hover > .btn-background {
+    left: 0;
+}

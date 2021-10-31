@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'styles/navbar'
+import 'styles/button'
 import 'fonts/Montserrat'
 
 Rails.start()
