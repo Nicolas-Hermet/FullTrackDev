@@ -7,7 +7,7 @@ const texts = [
 const options = {
   radius: 400, 
   maxSpeed: 'slow',
-  initSpeed: 'slow',
+  initSpeed: 'normal',
 
 };
 
