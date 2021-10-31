@@ -22,33 +22,54 @@
   color: #fff;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
+  margin: 0;
  }
- 
-.tagcloud,
-.same-as-tagcloud {
-  font-size: 28px;
-  font-weight: 900;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  position: absolute;
-  left: 50px;
+
+ .banner {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 10vw;
 }
 
-.same-as-tagcloud {
-  width: 800px;
-  height: 800px;
-  line-height: 800px;
-  text-align: center;
-  font-size: 68px;
-  font-weight: 900;
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5vw;
+  margin-right: 10vw;
 }
 
 h1 {
-  
   font-size: 55px;
   font-weight: 900;
   line-height: 1;
   margin: 0.67em 0;
   text-transform: uppercase;
+}
+
+.hero {
+  display: grid;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.tagcloud,
+.same-as-tagcloud {
+  grid-area: 1 / 2 / 2 / 3;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+.same-as-tagcloud {
+  grid-area: 1 / 2 / 2 / 3;
+  width: 800px;
+  height: 800px;
+  line-height: 800px;
+  font-size: 68px;
+  font-weight: 900;
 }
