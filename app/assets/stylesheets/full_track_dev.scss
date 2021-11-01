@@ -1,3 +1,63 @@
 // Place all the styles related to the FullTrackDev controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: "Montserrat", sans-serif;
+  background-color: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+ }
+
+ .banner {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 10vw;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5vw;
+  margin-right: 10vw;
+}
+
+h1 {
+  font-size: 55px;
+  font-weight: 900;
+  line-height: 1;
+  margin: 0.67em 0;
+  text-transform: uppercase;
+}
+
+.hero {
+  display: grid;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.tagcloud,
+.same-as-tagcloud {
+  grid-area: 1 / 2 / 2 / 3;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+.same-as-tagcloud {
+  grid-area: 1 / 2 / 2 / 3;
+  width: 800px;
+  height: 800px;
+  line-height: 800px;
+  font-size: 68px;
+  font-weight: 900;
+}
