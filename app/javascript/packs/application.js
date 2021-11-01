@@ -10,6 +10,7 @@ import "channels"
 import 'styles/navbar'
 import 'styles/button'
 import 'fonts/Montserrat'
+import "stylesheets/application";
 
 Rails.start();
 Turbolinks.start();
