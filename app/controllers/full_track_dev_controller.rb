@@ -4,4 +4,8 @@ class FullTrackDevController < ApplicationController
   def contact; end
 
   def wip; end
+
+  def landing
+    render layout: false
+  end
 end
