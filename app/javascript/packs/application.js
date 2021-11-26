@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "../../assets/stylesheets/application"
+import './nav-buttons'
 
 require.context("../../assets/images", true)
 
