@@ -17,4 +17,12 @@ updateList();
 window.addEventListener('scroll', () => {
   updateList();
 })
+
+  document.querySelector('#menu-button').addEventListener("click", e => {
+    e.preventDefault();
+    var menu = document.querySelector('#menu');
+    menu.classList.toggle('show-menu');
+    menu.classList.toggle('hidden');
+    document.querySelector('#menu-button').classList.toggle('close');
+  });
 });
