@@ -23,6 +23,7 @@ window.addEventListener('scroll', () => {
     var menu = document.querySelector('#menu');
     menu.classList.toggle('show-menu');
     menu.classList.toggle('hidden');
-    document.querySelector('#menu-button').classList.toggle('close');
+    document.querySelector('#cross').classList.toggle('close');
+    document.querySelector('#burger').classList.toggle('close');
   });
 });

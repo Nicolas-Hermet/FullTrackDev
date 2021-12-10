@@ -74,3 +74,12 @@
  .nav-dot:hover span {
    opacity: 1;
  }
+
+ #menu{
+  position:absolute;
+  width:100%;
+ }
+
+ .close {
+   display: none;
+ }
