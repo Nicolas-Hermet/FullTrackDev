@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
-    redirect_to root_path, success: 'Message envoyé !'
+    ContactFormMailer.with(params).message_email.deliver_now
+    # redirect_to root_path, success: 'Message envoyé !'
   end
 end
