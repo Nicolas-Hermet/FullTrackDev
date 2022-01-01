@@ -3,5 +3,6 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
+    redirect_to root_path, success: 'Message envoyé !'
   end
 end
