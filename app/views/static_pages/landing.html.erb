@@ -187,21 +187,22 @@
     <p class="section-paragraph">Choisissez votre mode de communication préféré :</p>
 
     <div class="w-full grid lg:grid-cols-2 gap-8 lg:gap-32 mt-24">
-      <div class="space-y-12">
+      <%= form_with url: contact_path, method: :post, class: "space-y-12" do |form| %>
         <div>
-          <label class="text-white block mb-6 text-xl font-bold">Nom et prénom</label>
-          <input class="w-full border border-input-border bg-input px-4 py-4">
+          <%= form.label :name, "Comment dois-je vous appeler ?", class: "text-white block mb-6 text-xl font-bold" %>
+          <%= form.text_field :name, class: "w-full border border-input-border bg-input px-4 py-4" %>
         </div>
         <div>
-          <label class="text-white block mb-6 text-xl font-bold">E-mail (promis, moi aussi je déteste les spams)</label>
-          <input type="email" class="w-full border border-input-border bg-input px-4 py-4">
+          <%= form.label :email, "E-mail (promis, moi aussi je déteste les spams)", class: "text-white block mb-6 text-xl font-bold" %>
+          <%= form.text_field :email, class: "w-full border border-input-border bg-input px-4 py-4" %>
         </div>
         <div>
-          <label class="text-white block mb-6 text-xl font-bold">Message</label>
-          <textarea type="email" class="w-full border border-input-border bg-input px-4 py-4 h-56 resize-none"></textarea>
+          <%= form.label :message, "Message", class: "text-white block mb-6 text-xl font-bold" %>
+          <%= form.text_area :message, class: "w-full border border-input-border bg-input px-4 py-4 h-56 resize-none" %>
         </div>
-        <button class="px-6 py-2 bg-theme text-white font-bold">Envoyer</button>
-      </div>
+
+        <%= form.button "Envoyer", class: "px-6 py-2 bg-theme text-white font-bold"  %>
+      <% end %>
 
       <div class="mt-12">
         <!-- Contact info -->
