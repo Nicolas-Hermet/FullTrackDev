@@ -15,6 +15,17 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+# Instantiate the client\
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp-relay.sendinblue.com',
+    :port => 587,
+    :user_name => Rails.application.credentials.sendinblue[:user_name],
+    :password => Rails.application.credentials.sendinblue[:password],
+    :authentication => 'login',
+    :enable_starttls_auto => true
+  }
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -66,7 +77,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
