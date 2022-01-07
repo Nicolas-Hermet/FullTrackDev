@@ -26,6 +26,7 @@ Rails.application.configure do
     :authentication => 'login',
     :enable_starttls_auto => true
   }
+  config.action_mailer.default_url_options = { :host => 'full-track-dev.herokuapp.com' }
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
