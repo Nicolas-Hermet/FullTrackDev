@@ -6,6 +6,11 @@
       <a href="#work" class="rounded hover:bg-gray-800 p-3">Activités</a>
       <a href="#clients" class="rounded hover:bg-gray-800 p-3">Comment ?</a>
       <a href="#hire" class="rounded"><button class="px-6 py-2 bg-theme font-bold">Discutons</button></a>
+    <% if admin_signed_in? %>
+      <span class="block px-2 py-1 rounded hover:bg-gray-800">
+        <%= button_to "Déconnexion", destroy_admin_session_path, method: :delete, class: "px-6 py-2 bg-red-300 text-gray-800 font-bold" %>
+      </span>
+    <% end %>
     </div>
     <div id="menu-button" class="p-1 md:hidden" style="cursor: pointer;">
       <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
