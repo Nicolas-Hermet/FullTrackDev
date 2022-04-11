@@ -23,17 +23,12 @@
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.number_field :category %>
+    <%= form.select :category, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article.category) %>
   </div>
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :modified_at %>
-    <%= form.datetime_select :modified_at %>
+    <%= form.select :status, options_for_select(Article.statuses.map {|key, value| [key.titleize, Article.statuses.key(value)]}, @article.status) %>
   </div>
 
   <div class="actions">

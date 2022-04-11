@@ -4,8 +4,7 @@ class CreateArticles < ActiveRecord::Migration[6.1]
       t.string :title
       t.integer :category, default: 0
       t.integer :status, default: 0
-      t.datetime :modified_at, default: DateTime.now
-      t.datetime :published_at, default: DateTime.now
+      t.datetime :published_at
 
       t.timestamps
     end

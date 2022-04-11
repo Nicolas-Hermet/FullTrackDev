@@ -70,8 +70,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_162730) do
     t.string "title"
     t.integer "category", default: 0
     t.integer "status", default: 0
-    t.datetime "modified_at", default: "2022-04-05 16:38:43"
-    t.datetime "published_at", default: "2022-04-05 16:38:43"
+    t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
