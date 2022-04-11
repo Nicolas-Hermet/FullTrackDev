@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy ]
-  before_action :authenticate_admin!, except: %i[show index]
+  before_action :authenticate_admin! #, except: %i[show index]
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    @articles = current_admin ? Article.all : Article.where(status: :published)
   end
 
   # GET /articles/1 or /articles/1.json
