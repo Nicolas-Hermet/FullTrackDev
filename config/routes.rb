@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :articles
   devise_for :admins
   root to: 'static_pages#landing'
   get 'static_pages/landing'
