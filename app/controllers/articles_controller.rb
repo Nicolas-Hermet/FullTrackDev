@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy ]
-  before_action :authenticate_admin! #, except: %i[show index]
+  before_action :authenticate_admin!, except: %i[show index]
 
   # GET /articles or /articles.json
   def index
@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    redirect_to articles_path unless @article.published? || current_admin
   end
 
   # GET /articles/new
