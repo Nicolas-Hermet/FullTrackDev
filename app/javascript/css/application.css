@@ -32,11 +32,11 @@ html, body {
 
 .secondary-title::before {
   content: '';
-  @apply block w-12 h-2 bg-theme rounded-full mb-1;
+  @apply block w-12 h-2 bg-gray-800 rounded-full mb-1;
 }
 
 .badge {
-  @apply px-4 py-2 text-sm rounded bg-badge;
+  @apply px-4 py-2 text-sm rounded bg-purple-900;
 }
 
 [id] {
@@ -52,7 +52,7 @@ html, body {
 }
 
 .selected-circle {
-  @apply border-theme bg-theme;
+  @apply border-purple-400 bg-gray-800;
 }
 
 .nav-dot:hover span {

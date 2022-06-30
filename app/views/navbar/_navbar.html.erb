@@ -1,28 +1,92 @@
-<header class="py-6">
-  <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full">
-    <div class="text-lg font-bold"><a href="/">Full Track Dev</a></div>
-    <div class="hidden md:flex space-x-12 items-center">
-      <a href="#" class="text-selected-text rounded hover:bg-gray-800 p-3">Accueil</a>
-      <a href="#work" class="rounded hover:bg-gray-800 p-3">Activités</a>
-      <a href="#clients" class="rounded hover:bg-gray-800 p-3">Comment ?</a>
-      <a href="#hire" class="rounded"><button class="px-6 py-2 bg-theme font-bold">Discutons</button></a>
-    <% if admin_signed_in? %>
-      <span class="block px-2 py-1 rounded hover:bg-gray-800">
-        <%= button_to "Déconnexion", destroy_admin_session_path, method: :delete, class: "px-6 py-2 bg-red-300 text-gray-800 font-bold" %>
-      </span>
-    <% end %>
-    </div>
-    <div id="menu-button" class="p-1 md:hidden" style="cursor: pointer;">
-      <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id='cross' class='close' d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="white"/>
-        <path id='burger' class='' d="M13 17.5H0.25V14.6667H13V17.5ZM25.75 10.4167H0.25V7.58333H25.75V10.4167ZM25.75 3.33333H13V0.5H25.75V3.33333Z" fill="white"/>
-      </svg>
-    </div>
-  </div>
-  <div id="menu" class="hidden px-8 bg-body w-full md:hidden">
-    <a href="#" class="text-selected-text block px-2 py-1 rounded hover:bg-gray-800">Accueil</a>
-    <a href="#work" class="block px-2 py-1 rounded hover:bg-gray-800">Activités</a>
-    <a href="#clients" class="block px-2 py-1 rounded hover:bg-gray-800">Comment ?</a>
-    <a href="#hire" class="block px-2 py-1 rounded hover:bg-gray-800"><button class="px-6 py-2 bg-theme font-bold">Discutons</button></a>
+<header class="absolute w-full z-30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-20">
+
+          <!-- Site branding -->
+          <div class="shrink-0 mr-4">
+              <!-- Logo -->
+              <a class="flex text-lg font-bold" href="/" aria-label="FullTrackDev">
+                  <svg class="w-8 h-8 fill-current text-purple-600" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M31.952 14.751a260.51 260.51 0 00-4.359-4.407C23.932 6.734 20.16 3.182 16.171 0c1.634.017 3.21.28 4.692.751 3.487 3.114 6.846 6.398 10.163 9.737.493 1.346.811 2.776.926 4.262zm-1.388 7.883c-2.496-2.597-5.051-5.12-7.737-7.471-3.706-3.246-10.693-9.81-15.736-7.418-4.552 2.158-4.717 10.543-4.96 16.238A15.926 15.926 0 010 16C0 9.799 3.528 4.421 8.686 1.766c1.82.593 3.593 1.675 5.038 2.587 6.569 4.14 12.29 9.71 17.792 15.57-.237.94-.557 1.846-.952 2.711zm-4.505 5.81a56.161 56.161 0 00-1.007-.823c-2.574-2.054-6.087-4.805-9.394-4.044-3.022.695-4.264 4.267-4.97 7.52a15.945 15.945 0 01-3.665-1.85c.366-3.242.89-6.675 2.405-9.364 2.315-4.107 6.287-3.072 9.613-1.132 3.36 1.96 6.417 4.572 9.313 7.417a16.097 16.097 0 01-2.295 2.275z" />
+                  </svg>
+                  Full Track Dev
+              </a>
+          </div>
+
+          <!-- Desktop navigation -->
+          <nav class="hidden md:flex md:grow">
+
+              <!-- Desktop menu links -->
+              <ul class="flex grow justify-end flex-wrap items-center">
+                  <li>
+                      <a href="#" class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out">Accueil</a>
+                  </li>
+                  <li>
+                      <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#work">Activités</a>
+                  </li>
+                  <li>
+                      <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#clients">Comment ?</a>
+                  </li>
+                  <li>
+                      <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#hire"><button class="px-6 py-2 bg-purple-800 font-bold">Discutons</button></a>
+                  </li>
+              </ul>
+
+              <% if admin_signed_in? %>
+                <span class="block px-2 py-1 rounded hover:bg-bg-gray-800">
+                  <%= button_to "Déconnexion", destroy_admin_session_path, method: :delete, class: "px-6 py-2 bg-red-300 text-gray-800 font-bold" %>
+                </span>
+              <% end %>
+
+          </nav>
+
+          <!-- Mobile menu -->
+          <div class="md:hidden" x-data="{ expanded: false }">
+
+              <!-- Hamburger button -->
+              <button
+                  class="hamburger"
+                  :class="{ 'active': expanded }"
+                  @click.stop="expanded = !expanded"
+                  aria-controls="mobile-nav"
+                  :aria-expanded="expanded"
+              >
+                  <span class="sr-only">Menu</span>
+                  <svg class="w-6 h-6 fill-current text-gray-300 hover:text-gray-200 transition duration-150 ease-in-out" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <rect y="4" width="24" height="2" rx="1" />
+                      <rect y="11" width="24" height="2" rx="1" />
+                      <rect y="18" width="24" height="2" rx="1" />
+                  </svg>
+              </button>
+
+              <!-- Mobile navigation -->
+              <nav
+                  id="mobile-nav"
+                  class="absolute top-full z-20 left-0 w-full px-4 sm:px-6 overflow-hidden transition-all duration-300 ease-in-out"
+                  x-ref="mobileNav"
+                  :style="expanded ? 'max-height: ' + $refs.mobileNav.scrollHeight + 'px; opacity: 1' : 'max-height: 0; opacity: .8'"
+                  @click.outside="expanded = false"
+                  @keydown.escape.window="expanded = false"
+                  x-cloak
+              >
+                  <ul class="bg-gray-800 px-4 py-2">
+                      <li>
+                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#">Accueil</a>
+                      </li>
+                      <li>
+                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#work">Activités</a>
+                      </li>
+                      <li>
+                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#clients">Comment ?</a>
+                      </li>
+                      <li>
+                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#hire"><button class="px-6 py-2 bg-purple-600 font-bold">Discutons</button></a>
+                      </li>
+                  </ul>
+              </nav>
+
+          </div>
+
+      </div>
   </div>
 </header>
