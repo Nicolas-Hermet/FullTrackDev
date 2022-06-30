@@ -13,10 +13,14 @@
 
   </head>
 
-  <body class="bg-gray-900 text-white font-poppins pb-12">
-    <%= render 'navbar/navbar' %>
-    <%= render 'flash/flash' %>
-    <%= yield %>
+  <body class="font-inter antialiased bg-gray-900 text-gray-200 tracking-tight">
+    <div class="flex flex-col min-h-screen overflow-hidden">
+      <%= render 'navbar/navbar' %>
+      <main class="grow">
+        <%= render 'flash/flash' %>
+        <%= yield %>
+      </main>
+    </div>
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   </body>
 </html>
