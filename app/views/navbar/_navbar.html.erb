@@ -2,13 +2,13 @@
   <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full">
     <div class="text-lg font-bold"><a href="/">Full Track Dev</a></div>
     <div class="hidden md:flex space-x-12 items-center">
-      <a href="#" class="text-selected-text rounded hover:bg-gray-800 p-3">Accueil</a>
-      <a href="#work" class="rounded hover:bg-gray-800 p-3">Activités</a>
-      <a href="#clients" class="rounded hover:bg-gray-800 p-3">Comment ?</a>
-      <a href="#hire" class="rounded"><button class="px-6 py-2 bg-theme font-bold">Discutons</button></a>
+      <a href="#" class="text-gray-400 rounded hover:bg-bg-gray-800 p-3">Accueil</a>
+      <a href="#work" class="rounded hover:bg-bg-gray-800 p-3">Activités</a>
+      <a href="#clients" class="rounded hover:bg-bg-gray-800 p-3">Comment ?</a>
+      <a href="#hire" class="rounded"><button class="px-6 py-2 bg-gray-800 font-bold">Discutons</button></a>
     <% if admin_signed_in? %>
-      <span class="block px-2 py-1 rounded hover:bg-gray-800">
-        <%= button_to "Déconnexion", destroy_admin_session_path, method: :delete, class: "px-6 py-2 bg-red-300 text-gray-800 font-bold" %>
+      <span class="block px-2 py-1 rounded hover:bg-bg-gray-800">
+        <%= button_to "Déconnexion", destroy_admin_session_path, method: :delete, class: "px-6 py-2 bg-red-300 text-bg-gray-800 font-bold" %>
       </span>
     <% end %>
     </div>
@@ -19,10 +19,10 @@
       </svg>
     </div>
   </div>
-  <div id="menu" class="hidden px-8 bg-body w-full md:hidden">
-    <a href="#" class="text-selected-text block px-2 py-1 rounded hover:bg-gray-800">Accueil</a>
-    <a href="#work" class="block px-2 py-1 rounded hover:bg-gray-800">Activités</a>
-    <a href="#clients" class="block px-2 py-1 rounded hover:bg-gray-800">Comment ?</a>
-    <a href="#hire" class="block px-2 py-1 rounded hover:bg-gray-800"><button class="px-6 py-2 bg-theme font-bold">Discutons</button></a>
+  <div id="menu" class="hidden px-8 bg-gray-900 w-full md:hidden">
+    <a href="#" class="text-gray-400 block px-2 py-1 rounded hover:bg-bg-gray-800">Accueil</a>
+    <a href="#work" class="block px-2 py-1 rounded hover:bg-bg-gray-800">Activités</a>
+    <a href="#clients" class="block px-2 py-1 rounded hover:bg-bg-gray-800">Comment ?</a>
+    <a href="#hire" class="block px-2 py-1 rounded hover:bg-bg-gray-800"><button class="px-6 py-2 bg-gray-800 font-bold">Discutons</button></a>
   </div>
 </header>
