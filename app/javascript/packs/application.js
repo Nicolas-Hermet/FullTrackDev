@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "../css/application"
 import './nav-buttons'
+import './main-template'
 
 require.context("../../assets/images", true)
 
