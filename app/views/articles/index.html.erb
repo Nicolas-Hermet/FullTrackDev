@@ -45,7 +45,7 @@
                         <footer class="flex flex-column items-center mt-4">
                             <span class="text-gray-500"><%= @articles[0].published_at&.to_date %></span>
                             <% if current_admin %>
-                            <span class="text-gray-700"> - </span>
+                            <span class="text-gray-700">   -   </span>
                             <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
                             <% end %>
                         </footer>
@@ -97,8 +97,8 @@
                         <footer class="flex items-center mt-4">
                             <span class="text-gray-500"><%= article.published_at&.to_date %></span>
                             <% if current_admin %>
-                            <span><%= link_to 'Edit', edit_article_path(article) %></span>
-                            <span><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+                            <span class="text-gray-500 mx-1">  <%= link_to 'Edit', edit_article_path(article) %>  </span>
+                            <span class="text-gray-500 mx-1">  <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>  </span>
                             <% end %>
                         </footer>
                     </article>
