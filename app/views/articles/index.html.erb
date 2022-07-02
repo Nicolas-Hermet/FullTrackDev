@@ -39,7 +39,7 @@
                                 <%= link_to @articles[0].title, @articles[0], class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
                             </h3>
                         </header>
-                        <% if @ærticles[0].content %>
+                        <% if @articles[0].content %>
                             <p class="text-lg text-gray-400 grow"><%= @articles[0].content&.to_plain_text.split('\n\n', 2)[0] %></p>
                         <% end %>
                         <footer class="flex flex-column items-center mt-4">
