@@ -11,6 +11,7 @@
 @import "trix/dist/trix";
 
 .trix-content {
+  color: white;
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
@@ -34,5 +35,66 @@
       padding: 0 !important;
       max-width: 100% !important;
     }
+  }
+}
+
+trix-toolbar .trix-button-group button {
+  background-color: lightgray;
+}
+
+trix-editor {
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  a {
+    color: lightblue;
+    text-decoration: underline;
+  }
+
+  blockquote {
+    border: 0 solid #ccc;
+    border-left-width: 0.3em;
+    margin-left: 0.3em;
+    padding-left: 0.6em;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+  }
+
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+  pre {
+    color: black;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    font-family: monospace;
+    font-size: 0.9em;
+    padding: 0.5em;
+    white-space: pre;
+    background-color: #eee;
+    overflow-x: auto;
   }
 }
