@@ -8,100 +8,105 @@
               <h1 class="h1" data-aos="fade-up">Toutes mes aventures, racing, développement web et télétravail.</h1>
           </div>
 
-          <!-- Featured article -->
-          <div class="pb-12 md:pb-20">
-              <article class="max-w-sm mx-auto md:max-w-none grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
-                  <%= link_to @articles[0], class: 'relative block group', 'data-aos':'fade-right', 'data-aos-delay': '200' do %>
-                  <!-- <a class="relative block group" href="blog-post.html" data-aos="fade-right" data-aos-delay="200"> -->
-                      <div class="absolute inset-0 bg-gray-800 hidden md:block transform md:translate-y-2 md:translate-x-4 xl:translate-y-4 xl:translate-x-8 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out pointer-events-none" aria-hidden="true"></div>
-                      <figure class="relative h-0 pb-9/16 md:pb-3/4 lg:pb-9/16 overflow-hidden transform md:-translate-y-2 xl:-translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out">
-                          <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/blog-post-01.jpg" width="540" height="303" alt="Blog post 01"> -->
-                      </figure>
-                  <% end %>
-                  <div data-aos="fade-left" data-aos-delay="200">
-                      <header>
-                          <div class="mb-3">
-                              <ul class="flex flex-wrap text-xs font-medium -m-1">
-                                  <li class="m-1">
-                                      <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= @articles[0].category %></a>
-                                  </li>
-
-                                  <% if current_admin && @articles[0].status %>
-                                  <li class="m-1">
-                                    <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
-                                  </li>
-                                  <% end %>
-
-                              </ul>
-                          </div>
-                          <h3 class="h3 text-2xl lg:text-3xl mb-2">
-                            <%= link_to @articles[0].title, @articles[0], class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
-                          </h3>
-                        </header>
-                        <p class="text-lg text-gray-400 grow"><%= @articles[0].content.to_plain_text.split('\n\n', 2)[0] %></p>
-                        <footer class="flex flex-column items-center mt-4">
-                          <span class="text-gray-500"><%= @articles[0].published_at&.to_date %></span>
-                          <% if current_admin %>
-                          <span class="text-gray-700"> - </span>
-                          <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
-                        <% end %>
-                      </footer>
-                  </div>
-              </article>
-          </div>
-
-          <!-- Articles list -->
-          <div class="max-w-sm mx-auto md:max-w-none">
-
-              <!-- Section title -->
-              <h4 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Latest articles</h4>
-
-              <!-- Articles container -->
-              <div class="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
-                <% @articles.each do |article| %>
-                  <!-- 1st article -->
-                  <article class="flex flex-col h-full" data-aos="fade-up">
-                      <header>
-                        <%= link_to article, class: 'block mb-6' do %>
-                          <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                              <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/news-01.jpg" width="352" height="198" alt="News 01"> -->
-                          </figure>
-                        <% end %>
-                          <div class="mb-3">
-                              <ul class="flex flex-wrap text-xs font-medium -m-1">
-                                  <li class="m-1">
-                                      <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= article.category %></a>
-                                  </li>
-                                  <% if current_admin && article.status %>
-                                    <% if article.published? %>
+          <% if @articles.present? %>
+            <!-- Featured article -->
+            <div class="pb-12 md:pb-20">
+                <article class="max-w-sm mx-auto md:max-w-none grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
+                    <%= link_to @articles[0], class: 'relative block group', 'data-aos':'fade-right', 'data-aos-delay': '200' do %>
+                    <!-- <a class="relative block group" href="blog-post.html" data-aos="fade-right" data-aos-delay="200"> -->
+                        <div class="absolute inset-0 bg-gray-800 hidden md:block transform md:translate-y-2 md:translate-x-4 xl:translate-y-4 xl:translate-x-8 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out pointer-events-none" aria-hidden="true"></div>
+                        <figure class="relative h-0 pb-9/16 md:pb-3/4 lg:pb-9/16 overflow-hidden transform md:-translate-y-2 xl:-translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out">
+                            <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/blog-post-01.jpg" width="540" height="303" alt="Blog post 01"> -->
+                        </figure>
+                    <% end %>
+                    <div data-aos="fade-left" data-aos-delay="200">
+                        <header>
+                            <div class="mb-3">
+                                <ul class="flex flex-wrap text-xs font-medium -m-1">
                                     <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= @articles[0].category %></a>
                                     </li>
-                                    <% else %>
+
+                                    <% if current_admin && @articles[0].status %>
                                     <li class="m-1">
                                         <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
                                     </li>
                                     <% end %>
-                                  <% end %>
-                              </ul>
-                          </div>
-                          <h3 class="h4 mb-2">
-                            <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
-                              <!-- <a class="hover:text-gray-100 transition duration-150 ease-in-out" href="blog-post.html">The quick brown fox jumped over the lazy dog.</a> -->
-                          </h3>
-                      </header>
-                      <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.split('\n\n', 2)[0] %></p>
-                      <footer class="flex items-center mt-4">
-                        <span class="text-gray-500"><%= article.published_at&.to_date %></span>
-                        <% if current_admin %>
-                          <span><%= link_to 'Edit', edit_article_path(article) %></span>
-                          <span><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+
+                                </ul>
+                            </div>
+                            <h3 class="h3 text-2xl lg:text-3xl mb-2">
+                                <%= link_to @articles[0].title, @articles[0], class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
+                            </h3>
+                        </header>
+                        <% if @ærticles[0].content %>
+                            <p class="text-lg text-gray-400 grow"><%= @articles[0].content&.to_plain_text.split('\n\n', 2)[0] %></p>
                         <% end %>
-                      </footer>
-                  </article>
-                <% end %>
-              </div>
-          </div>
+                        <footer class="flex flex-column items-center mt-4">
+                            <span class="text-gray-500"><%= @articles[0].published_at&.to_date %></span>
+                            <% if current_admin %>
+                            <span class="text-gray-700"> - </span>
+                            <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
+                            <% end %>
+                        </footer>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Articles list -->
+            <div class="max-w-sm mx-auto md:max-w-none">
+
+                <!-- Section title -->
+                <h4 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Latest articles</h4>
+
+                <!-- Articles container -->
+                <div class="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
+                    <% @articles.each do |article| %>
+                    <!-- 1st article -->
+                    <article class="flex flex-col h-full" data-aos="fade-up">
+                        <header>
+                            <%= link_to article, class: 'block mb-6' do %>
+                            <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
+                                <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/news-01.jpg" width="352" height="198" alt="News 01"> -->
+                            </figure>
+                            <% end %>
+                            <div class="mb-3">
+                                <ul class="flex flex-wrap text-xs font-medium -m-1">
+                                    <li class="m-1">
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= article.category %></a>
+                                    </li>
+                                    <% if current_admin && article.status %>
+                                        <% if article.published? %>
+                                        <li class="m-1">
+                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
+                                        </li>
+                                        <% else %>
+                                        <li class="m-1">
+                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
+                                        </li>
+                                        <% end %>
+                                    <% end %>
+                                </ul>
+                            </div>
+                            <h3 class="h4 mb-2">
+                                <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
+                                <!-- <a class="hover:text-gray-100 transition duration-150 ease-in-out" href="blog-post.html">The quick brown fox jumped over the lazy dog.</a> -->
+                            </h3>
+                        </header>
+                        <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.split('\n\n', 2)[0] %></p>
+                        <footer class="flex items-center mt-4">
+                            <span class="text-gray-500"><%= article.published_at&.to_date %></span>
+                            <% if current_admin %>
+                            <span><%= link_to 'Edit', edit_article_path(article) %></span>
+                            <span><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+                            <% end %>
+                        </footer>
+                    </article>
+                    <% end %>
+                </div>
+            </div>
+
+          <% end %>
 
           <!-- Pagination -->
           <!-- <nav class="flex justify-center pt-16" role="navigation" aria-label="Pagination Navigation">
