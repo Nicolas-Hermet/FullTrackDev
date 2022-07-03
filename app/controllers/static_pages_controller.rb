@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
-  def landing
-  end
+  def landing; end
+
+  def home; end
 
   def contact
     ContactFormMailer.with(params).message_email.deliver_now
