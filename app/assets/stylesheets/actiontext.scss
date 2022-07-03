@@ -54,7 +54,7 @@ trix-editor {
   }
 
   blockquote {
-    border: 0 solid #ccc;
+    border: 0 solid #D9E3EA;
     border-left-width: 0.3em;
     margin-left: 0.3em;
     padding-left: 0.6em;
@@ -96,5 +96,74 @@ trix-editor {
     white-space: pre;
     background-color: #eee;
     overflow-x: auto;
+  }
+}
+
+.trix-content {
+  div {
+    margin-bottom: 8px;
+  }
+
+  blockquote {
+    margin-bottom: 8px;
+    font-style: italic;
+    padding-left: 4px;
+    border-left: 2px;
+    border-color: #D9E3EA;
+  }
+
+  figure {
+    margin-bottom: 8px;
+    img {
+      width: 100%;
+    }
+    figcaption {
+      margin-top: 3px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      text-align: center;
+      color: #707D86;
+    }
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.05em;
+    color: #D9E3EA;
+  }
+
+  h3 {
+    margin-bottom: 4px;
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 700;
+    line-height: 1.25;
+    color: #D9E3EA;
+  }
+
+  h4 {
+    margin-bottom: 8px;
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+    font-weight: 500;
+    line-height: 1.375;
+    letter-spacing: -0.025em;
+    color: #D9E3EA;
+  }
+
+  ul {
+    margin-bottom: 8px;
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-bottom: 8px;
+    list-style-position: inside;
   }
 }
