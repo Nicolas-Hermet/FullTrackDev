@@ -1,29 +1,136 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<section class="relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="pt-32 pb-12 md:pt-40 md:pb-20">
+      <div class="max-w-3xl mx-auto">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @article.content %>
-</p>
+              <article>
 
-<p>
-  <strong>Category:</strong>
-  <%= @article.category %>
-</p>
+                  <header class="mb-8">
+                      <!-- Title and excerpt -->
+                      <div class="text-center md:text-left">
+                          <h1 class="h1 mb-4" data-aos="fade-up">
+                              <%= @article.title %>
+                          </h1>
+                          <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200"><% @article.content.to_plain_text.split('\n\n', 2)[0] %></p>
+                      </div>
+                      <!-- Article meta -->
+                      <div class="md:flex md:items-center md:justify-between mt-3">
+                          <!-- Author meta -->
+                          <div class="flex items-center justify-center" data-aos="fade-up" data-aos-delay="400">
+                              <a href="#0">
+                                  <img class="rounded-full shrink-0 mr-4" src="../images/news-author-04.jpg" width="40" height="40" alt="Author 04" />
+                              </a>
+                              <div>
+                                  <a class="font-medium text-gray-200 hover:text-gray-100 transition duration-150 ease-in-out" href="#0">Nicolas Hermet</a>
+                                  <span class="text-gray-700"> - </span>
+                                  <span class="text-gray-500"><%= @article.published_at&.to_date || 'Draft'%></span>
+                              </div>
+                          </div>
+                          <!-- Article tags -->
+                          <div class="flex justify-center mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="600">
+                              <ul class="flex flex-wrap text-xs font-medium -m-1">
+                                  <li class="m-1">
+                                      <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= @article.category %></a>
+                                  </li>
+                                  <% if current_admin && @article.status %>
+                                    <% if @article.published? %>
+                                    <li class="m-1">
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @article.status %></a>
+                                    </li>
+                                    <% else %>
+                                    <li class="m-1">
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @article.status %></a>
+                                    </li>
+                                    <% end %>
+                                  <% end %>
+                              </ul>
+                          </div>
+                      </div>
+                  </header>
 
-<p>
-  <strong>Status:</strong>
-  <%= @article.status %>
-</p>
+                  <!-- Article image -->
+                  <figure class="mb-8 lg:-ml-32 lg:-mr-32" data-aos="fade-up" data-aos-delay="600">
+                      <img class="w-full" src="../images/news-single.jpg" width="1024" height="576" alt="News single" />
+                  </figure>
 
-<p>
-  <strong>Published at:</strong>
-  <%= @article.published_at %>
-</p>
+                  <!-- Article content -->
+                  <div class="text-lg text-gray-400">
+                      <%= @article.content %>
+                  </div>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+                   <!-- Article footer -->
+                   <footer>
+                    <div class="md:flex md:items-center md:justify-between text-center md:text-left">
+                        <div class="text-lg text-gray-400 italic">Originally published at <%= link_to 'Full Track Dev', root_path, class: 'text-gray-200' %>.</div>
+                        <% if current_admin %>
+                            <div class="text-lg text-gray-400 italic">
+                                <%= link_to 'Edit', edit_article_path(@article) %> |
+                                <%= link_to 'Back', articles_path %>
+                            </div>
+                        <% end %>
+                        <ul class="inline-flex mt-4 md:ml-4 md:mb-0">
+                            <li>
+                                <%= render 'socials/twitter' %>
+                            </li>
+                            <li class="ml-4">
+                                <%= render 'socials/linkedin' %>
+                            </li>
+                        </ul>
+                    </div>
+                </footer>
+            </article>
+
+
+
+            <!-- Related articles -->
+            <aside class="mt-20">
+                <div class="max-w-sm mx-auto md:max-w-none">
+
+                    <!-- Section title -->
+                    <h4 class="h4 py-6 mb-10 border-t border-b border-gray-700">Vous pourriez aussi aimer</h4>
+
+                    <!-- Articles container -->
+                    <div class="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
+                        <% @articles.each do |article| %>
+                            <article class="flex flex-col h-full" data-aos="fade-up">
+                                <header>
+                                    <a class="block mb-6" href="blog-post.html">
+                                        <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
+                                            <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/news-04.jpg" width="352" height="198" alt="News 04" /> -->
+                                        </figure>
+                                    </a>
+                                    <div class="mb-3">
+                                        <ul class="flex flex-wrap text-xs font-medium -m-1">
+                                            <li class="m-1">
+                                                <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= article.category %></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="h4 mb-2">
+                                        <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
+                                    </h3>
+                                </header>
+                                <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.split('\n\n', 2)[0] %></p>
+                                <footer class="flex items-center mt-4">
+                                    <div class="font-medium">
+                                        <%= link_to 'Nicolas Hermet', root_path, class: 'text-gray-200 hover:text-gray-100 transition duration-150 ease-in-out' %>
+                                        <span class="text-gray-700"> - </span>
+
+                                        <% if article.published? %>
+                                            <span class="text-gray-500"><%= article.published_at&.to_date %></span>
+                                        <% else %>
+                                            <span class="text-gray-500">To be published</span>
+                                        <% end %>
+
+                                    </div>
+                                </footer>
+                            </article>
+                        <% end %>
+
+
+                    </div>
+
+                </div>
+            </aside>
