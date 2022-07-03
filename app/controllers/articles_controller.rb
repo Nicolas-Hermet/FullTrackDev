@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update destroy ]
+  before_action :set_article, only: %i[show edit update destroy]
+  before_action :related_articles, only: :show
   before_action :authenticate_admin!, except: %i[show index]
 
   # GET /articles or /articles.json
@@ -63,6 +64,10 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def related_articles
+      @articles = Article.where(category: @article.category).order(Arel.sql('RANDOM()')).first(3)
     end
 
     # Only allow a list of trusted parameters through.

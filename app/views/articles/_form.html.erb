@@ -1,37 +1,66 @@
-<%= form_with(model: article) do |form| %>
-  <% if article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<section class="w-full relative">
+  <div class="w-full mx-auto px-4 sm:px-6 relative">
+      <div class="pt-32 pb-12 md:pt-40 md:pb-20">
 
-      <ul>
-        <% article.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <!-- Page header -->
+          <div class="mx-auto text-center pb-12 md:pb-16">
+              <h1 class="h1 mb-4" data-aos="fade-up"><%= article.title || 'Nouvel Article' %></h1>
+              <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200"><%= article ? 'Une petite relecture qui ne fait pas de mal ;)' : 'Vas-y lâche toi !' %></p>
+          </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+          <%= form_with(model: article, html: { class: 'w-full mx-auto'} ) do |form| %>
+            <% if article.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+                <ul>
+                  <% article.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="flex flex-wrap -mx-3 mb-4">
+              <div class="field w-full md:w-1/2 px-3 mb-4 md:mb-0">
+                <%= form.label :title, class: 'block text-gray-300 text-sm font-medium mb-1' %>
+                <%= form.text_field :title, class: 'form-input w-full text-gray-300' %>
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                  <p>Future banniere ?</p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-4">
+              <div class="field w-full px-3">
+                  <%= form.label :content, class: 'block text-gray-300 text-sm font-medium mb-1' %>
+                  <%= form.rich_text_area :content, class: 'form-textarea w-full text-gray-300' %>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-4">
+              <div class="field w-full px-3">
+                <%= form.label :category, class: 'block text-gray-300 text-sm font-medium mb-1' %>
+                <%= form.select :category, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article.category), {}, { class: 'form-select w-full text-gray-300' } %>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-4">
+                <div class="field w-full px-3">
+                <%= form.label :status, class: 'block text-gray-300 text-sm font-medium mb-1' %>
+                <%= form.select :status, options_for_select(Article.statuses.map {|key, value| [key.titleize, Article.statuses.key(value)]}, @article.status), {}, { class: 'form-select w-full text-gray-300' } %>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mt-6">
+              <div class="actions w-full px-3">
+                  <%= form.submit article.id ? 'Modify' : 'Create Article', class: 'btn text-white bg-purple-600 hover:bg-purple-700 w-full'  %>
+              </div>
+            </div>
+
+          <% end %>
+
+      </div>
   </div>
+</section>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.rich_text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article.category) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, options_for_select(Article.statuses.map {|key, value| [key.titleize, Article.statuses.key(value)]}, @article.status) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

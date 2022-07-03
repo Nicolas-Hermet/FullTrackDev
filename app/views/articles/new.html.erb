@@ -1,5 +1,14 @@
-<h1>New Article</h1>
+<section class="relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="pt-32 pb-12 md:pt-40 md:pb-20">
+          <div class="max-w-3xl mx-auto">
+            <h1 class="h1 mb-4">New Article</h1>
 
-<%= render 'form', article: @article %>
+            <%= render 'form', article: @article %>
 
-<%= link_to 'Back', articles_path %>
+            <%= link_to 'Show', @article %> |
+            <%= link_to 'Back', articles_path %>
+          </div>
+      </div>
+  </div>
+</section>
