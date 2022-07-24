@@ -18,18 +18,24 @@
 
               <!-- Desktop menu links -->
               <ul class="flex grow justify-end flex-wrap items-center">
-                  <li>
-                      <a href="#" class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out">Accueil</a>
-                  </li>
-                  <li>
-                      <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#work">Activités</a>
-                  </li>
-                  <li>
-                      <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#clients">Comment ?</a>
-                  </li>
-                  <li>
-                      <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#hire"><button class="px-6 py-2 bg-purple-800 font-bold">Discutons</button></a>
-                  </li>
+                <li>
+                    <%= link_to 'Accueil', root_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out"%>
+                </li>
+                <li>
+                    <%= link_to 'Blog', articles_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out"%>
+                </li>
+                <li>
+                    <%= link_to 'Mes activités pro', static_pages_landing_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" %>
+                </li>
+                <li>
+                    <% if current_page?(static_pages_landing_path) %>
+                        <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#hire"><button class="px-6 py-2 bg-purple-800 font-bold">Discutons</button></a>
+                    <% else %>
+                        <%= link_to static_pages_landing_path(static_pages_landing_path, anchor: 'hire'), class:"text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" do %>
+                            <button class="px-6 py-2 bg-purple-800 font-bold">Contact</button>
+                        <% end %>
+                    <% end %>
+                </li>
               </ul>
 
               <% if admin_signed_in? %>
@@ -71,17 +77,23 @@
               >
                   <ul class="bg-gray-800 px-4 py-2">
                       <li>
-                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#">Accueil</a>
+                        <%= link_to 'Accueil', root_path, class: "flex text-gray-300 hover:text-gray-200 py-2"%>
                       </li>
                       <li>
-                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#work">Activités</a>
+                        <%= link_to 'Blog', articles_path, class: "flex text-gray-300 hover:text-gray-200 py-2"%>
                       </li>
                       <li>
-                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#clients">Comment ?</a>
+                        <%= link_to 'Mes activités pro', static_pages_landing_path, class: "flex text-gray-300 hover:text-gray-200 py-2" %>
                       </li>
                       <li>
-                          <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#hire"><button class="px-6 py-2 bg-purple-600 font-bold">Discutons</button></a>
-                      </li>
+                        <% if current_page?(static_pages_landing_path) %>
+                            <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#hire"><button class="px-6 py-2 bg-purple-600 font-bold">Discutons</button></a>
+                        <% else %>
+                            <%= link_to static_pages_landing_path(static_pages_landing_path, anchor: 'hire'), class:"flex text-gray-300 hover:text-gray-200 py-2" do %>
+                                <button class="px-6 py-2 bg-purple-600 font-bold">Contact</button>
+                            <% end %>
+                        <% end %>
+                    </li>
                   </ul>
               </nav>
 
