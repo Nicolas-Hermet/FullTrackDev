@@ -49,7 +49,10 @@
 
                   <!-- Article image -->
                   <figure class="mb-8 lg:-ml-32 lg:-mr-32" data-aos="fade-up" data-aos-delay="600">
-                      <!-- <img class="w-full" src="../images/news-single.jpg" width="1024" height="576" alt="Article banner" /> -->
+                    <% if @article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                        <%= image_tag @article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'w-full', width:'1024', height: '576', alt: 'Bannière article' %>
+                    <% end %>
+                    <!-- <img class="w-full" src="../images/news-single.jpg" width="1024" height="576" alt="Article banner" /> -->
                   </figure>
 
                   <!-- Article content -->
@@ -95,7 +98,9 @@
                                 <header>
                                     <a class="block mb-6" href="blog-post.html">
                                         <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                                            <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/news-04.jpg" width="352" height="198" alt="News 04" /> -->
+                                            <% if @article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                                <%= image_tag @article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out', width:'352', height: '198', alt: 'Bannière article' %>
+                                            <% end %>
                                         </figure>
                                     </a>
                                     <div class="mb-3">

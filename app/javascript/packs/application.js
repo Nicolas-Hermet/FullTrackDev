@@ -10,6 +10,7 @@ import "channels"
 import "../css/application"
 import './nav-buttons'
 import './main-template'
+import './richtext'
 
 require.context("../../assets/images", true)
 

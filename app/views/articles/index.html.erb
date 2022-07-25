@@ -13,10 +13,11 @@
             <div class="pb-12 md:pb-20">
                 <article class="max-w-sm mx-auto md:max-w-none grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
                     <%= link_to @articles[0], class: 'relative block group', 'data-aos':'fade-right', 'data-aos-delay': '200' do %>
-                    <!-- <a class="relative block group" href="blog-post.html" data-aos="fade-right" data-aos-delay="200"> -->
                         <div class="absolute inset-0 bg-gray-800 hidden md:block transform md:translate-y-2 md:translate-x-4 xl:translate-y-4 xl:translate-x-8 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out pointer-events-none" aria-hidden="true"></div>
                         <figure class="relative h-0 pb-9/16 md:pb-3/4 lg:pb-9/16 overflow-hidden transform md:-translate-y-2 xl:-translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out">
-                            <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/blog-post-01.jpg" width="540" height="303" alt="Blog post 01"> -->
+                            <% if @articles[0].rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                <%= image_tag @articles[0].rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
+                            <% end %>
                         </figure>
                     <% end %>
                     <div data-aos="fade-left" data-aos-delay="200">
@@ -57,7 +58,7 @@
             <div class="max-w-sm mx-auto md:max-w-none">
 
                 <!-- Section title -->
-                <h4 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Latest articles</h4>
+                <h4 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Mes derniers articles</h4>
 
                 <!-- Articles container -->
                 <div class="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
@@ -67,7 +68,9 @@
                         <header>
                             <%= link_to article, class: 'block mb-6' do %>
                             <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                                <!-- <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="../images/news-01.jpg" width="352" height="198" alt="News 01"> -->
+                                <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                    <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
+                                <% end %>
                             </figure>
                             <% end %>
                             <div class="mb-3">
@@ -90,7 +93,6 @@
                             </div>
                             <h3 class="h4 mb-2">
                                 <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
-                                <!-- <a class="hover:text-gray-100 transition duration-150 ease-in-out" href="blog-post.html">The quick brown fox jumped over the lazy dog.</a> -->
                             </h3>
                         </header>
                         <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.split('\n\n', 2)[0] %></p>

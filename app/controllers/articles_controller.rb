@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = current_admin ? Article.all : Article.where(status: :published)
+    @articles = current_admin ? Article.all.order(published_at: :asc).with_rich_text_content_and_embeds : Article.where(status: :published).order(published_at: :asc).with_rich_text_content_and_embeds
   end
 
   # GET /articles/1 or /articles/1.json
@@ -67,7 +67,7 @@ class ArticlesController < ApplicationController
     end
 
     def related_articles
-      @articles = Article.where(category: @article.category).order(Arel.sql('RANDOM()')).first(3)
+      @articles = Article.where(category: @article.category).order(Arel.sql('RANDOM()')).with_rich_text_content_and_embeds.first(3)
     end
 
     # Only allow a list of trusted parameters through.
