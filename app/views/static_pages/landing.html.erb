@@ -187,6 +187,11 @@
     <p class="section-paragraph">Choisissez votre mode de communication préféré :</p>
 
     <div class="w-full grid lg:grid-cols-2 gap-8 lg:gap-32 mt-24">
+
+      <%= content_for :recaptcha_js do %>
+        <%= include_recaptcha_js %>
+      <% end %>
+
       <%= form_with url: contact_path, method: :post, class: "space-y-12" do |form| %>
         <div>
           <%= form.label :name, "Comment dois-je vous appeler ?", class: "text-white block mb-6 text-xl font-bold" %>
@@ -202,6 +207,8 @@
         </div>
 
         <%= form.button "Envoyer", class: "px-6 py-2 bg-gray-800 text-white font-bold"  %>
+
+        <%= recaptcha_execute('contact') %>
       <% end %>
 
       <div class="mt-12">

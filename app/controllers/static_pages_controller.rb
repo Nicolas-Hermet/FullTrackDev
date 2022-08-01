@@ -6,7 +6,11 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
+    unless verify_recaptcha?(params[:recaptcha_token], 'contact')
+      flash.now[:error] = "reCAPTCHA Authorization Failed. Please try again later."
+      return render :landing, anchor: 'hire'
+    end
     ContactFormMailer.with(params).message_email.deliver_now
-    redirect_to root_path, success: 'Message envoyé !'
+    redirect_to static_pages_landing_path
   end
 end
