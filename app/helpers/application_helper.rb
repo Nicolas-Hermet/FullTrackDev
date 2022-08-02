@@ -2,7 +2,7 @@ module ApplicationHelper
   RECAPTCHA_SITE_KEY = Rails.application.credentials.dig(:recaptcha, :site_key)
 
   def include_recaptcha_js
-    raw %Q{
+    raw %{
       <script src="https://www.google.com/recaptcha/api.js?render=#{RECAPTCHA_SITE_KEY}"></script>
     }
   end
@@ -10,7 +10,7 @@ module ApplicationHelper
   def recaptcha_execute(action)
     id = "recaptcha_token_#{SecureRandom.hex(10)}"
 
-    raw %Q{
+    raw %{
       <input name="recaptcha_token" type="hidden" id="#{id}"/>
       <script>
         grecaptcha.ready(function() {

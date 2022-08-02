@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe "articles/show", type: :view do
   before(:each) do
     @article = assign(:article, Article.create!(
-      title: "Title",
-      content: nil,
-      category: 2,
-      status: 3
-    ))
+                                  title: "Title",
+                                  content: nil,
+                                  category: 2,
+                                  status: 3
+                                ))
   end
 
   it "renders attributes in <p>" do

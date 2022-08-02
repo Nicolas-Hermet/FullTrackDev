@@ -19,8 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   # GET /articles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /articles or /articles.json
   def create
@@ -61,17 +60,18 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    def related_articles
-      @articles = Article.where(category: @article.category).order(Arel.sql('RANDOM()')).with_rich_text_content_and_embeds.first(3)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.friendly.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :content, :category, :status, :published_at)
-    end
+  def related_articles
+    @articles = Article.where(category: @article.category).order(Arel.sql('RANDOM()')).with_rich_text_content_and_embeds.first(3)
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :content, :category, :status, :published_at)
+  end
 end

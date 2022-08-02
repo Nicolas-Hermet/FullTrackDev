@@ -98,8 +98,8 @@
                                 <header>
                                     <a class="block mb-6" href="blog-post.html">
                                         <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                                            <% if @article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
-                                                <%= image_tag @article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out', width:'352', height: '198', alt: 'Bannière article' %>
+                                            <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                                <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out', width:'352', height: '198', alt: 'Bannière article' %>
                                             <% end %>
                                         </figure>
                                     </a>
