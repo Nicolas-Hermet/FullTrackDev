@@ -28,8 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-# Slug for Articles
+# For Articles
 gem 'friendly_id', '~> 5.4.0'
+gem 'kaminari'
 
 # Letter_opener
 gem "letter_opener"
