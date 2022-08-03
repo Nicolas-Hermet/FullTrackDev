@@ -5,7 +5,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = current_admin ? Article.all.order(published_at: :asc).with_rich_text_content_and_embeds : Article.where(status: :published).order(published_at: :asc).with_rich_text_content_and_embeds
+    @last_published = Article.order(published_at: :asc).first
+    @articles = current_admin ? Article.page(params[:page]) : Article.where(status: :published).page(params[:page])
+    @articles.order(published_at: :asc).with_rich_text_content_and_embeds
   end
 
   # GET /articles/1 or /articles/1.json
