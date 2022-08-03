@@ -5,7 +5,11 @@
 
           <!-- Page header -->
           <div class="max-w-3xl pb-12 md:pb-20 text-center md:text-left">
-              <h1 class="h1" data-aos="fade-up">Toutes mes aventures, racing, développement web et télétravail.</h1>
+            <h1 class="h1" data-aos="fade-up">Toutes mes aventures, racing, développement web et télétravail.</h1>
+            <% if current_admin %>
+                <span class="text-gray-700">   -   </span>
+                <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
+            <% end %>
           </div>
 
           <% if @articles.present? %>
@@ -47,10 +51,6 @@
                         <% end %>
                         <footer class="flex flex-column items-center mt-4">
                             <span class="text-gray-500"><%= @last_published.published_at&.to_date %></span>
-                            <% if current_admin %>
-                            <span class="text-gray-700">   -   </span>
-                            <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
-                            <% end %>
                         </footer>
                     </div>
                 </article>
