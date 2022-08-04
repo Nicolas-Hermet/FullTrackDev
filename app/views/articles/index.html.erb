@@ -5,18 +5,24 @@
 
           <!-- Page header -->
           <div class="max-w-3xl pb-12 md:pb-20 text-center md:text-left">
-              <h1 class="h1" data-aos="fade-up">Toutes mes aventures, racing, développement web et télétravail.</h1>
+            <h1 class="h1" data-aos="fade-up">Toutes mes aventures, racing, développement web et télétravail.</h1>
+            <% if current_admin %>
+                <span class="text-gray-700">   -   </span>
+                <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
+            <% end %>
           </div>
 
           <% if @articles.present? %>
             <!-- Featured article -->
             <div class="pb-12 md:pb-20">
                 <article class="max-w-sm mx-auto md:max-w-none grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
-                    <%= link_to @articles[0], class: 'relative block group', 'data-aos':'fade-right', 'data-aos-delay': '200' do %>
+                    <%= link_to @last_published, class: 'relative block group', 'data-aos':'fade-right', 'data-aos-delay': '200' do %>
                         <div class="absolute inset-0 bg-gray-800 hidden md:block transform md:translate-y-2 md:translate-x-4 xl:translate-y-4 xl:translate-x-8 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out pointer-events-none" aria-hidden="true"></div>
                         <figure class="relative h-0 pb-9/16 md:pb-3/4 lg:pb-9/16 overflow-hidden transform md:-translate-y-2 xl:-translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out">
-                            <% if @articles[0].rich_text_content.embeds.find{|embeds| embeds.image?} %>
-                                <%= image_tag @articles[0].rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
+                            <% if @last_published.rich_text_content %>
+                                <% if @last_published.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                    <%= image_tag @last_published.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
+                                <% end %>
                             <% end %>
                         </figure>
                     <% end %>
@@ -25,30 +31,26 @@
                             <div class="mb-3">
                                 <ul class="flex flex-wrap text-xs font-medium -m-1">
                                     <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= @articles[0].category %></a>
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= @last_published.category %></a>
                                     </li>
 
-                                    <% if current_admin && @articles[0].status %>
+                                    <% if current_admin && @last_published.status %>
                                     <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @last_published.status %></a>
                                     </li>
                                     <% end %>
 
                                 </ul>
                             </div>
                             <h3 class="h3 text-2xl lg:text-3xl mb-2">
-                                <%= link_to @articles[0].title, @articles[0], class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
+                                <%= link_to @last_published.title, @last_published, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
                             </h3>
                         </header>
-                        <% if @articles[0].content %>
-                            <p class="text-lg text-gray-400 grow"><%= @articles[0].content&.to_plain_text.split('\n\n', 2)[0] %></p>
+                        <% if @last_published.content %>
+                            <p class="text-lg text-gray-400 grow"><%= @last_published.content&.to_plain_text.split('\n\n', 2)[0] %></p>
                         <% end %>
                         <footer class="flex flex-column items-center mt-4">
-                            <span class="text-gray-500"><%= @articles[0].published_at&.to_date %></span>
-                            <% if current_admin %>
-                            <span class="text-gray-700">   -   </span>
-                            <%= link_to 'New Article', new_article_path, class: 'nline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-gray-500 hover:bg-gray-600 transition duration-150 ease-in-out' %>
-                            <% end %>
+                            <span class="text-gray-500"><%= @last_published.published_at&.to_date %></span>
                         </footer>
                     </div>
                 </article>
@@ -68,8 +70,10 @@
                         <header>
                             <%= link_to article, class: 'block mb-6' do %>
                             <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                                <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
-                                    <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
+                                <% if article.rich_text_content %>
+                                    <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                        <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
+                                    <% end %>
                                 <% end %>
                             </figure>
                             <% end %>
@@ -81,11 +85,11 @@
                                     <% if current_admin && article.status %>
                                         <% if article.published? %>
                                         <li class="m-1">
-                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
+                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @last_published.status %></a>
                                         </li>
                                         <% else %>
                                         <li class="m-1">
-                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @articles[0].status %></a>
+                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @last_published.status %></a>
                                         </li>
                                         <% end %>
                                     <% end %>
@@ -111,31 +115,7 @@
           <% end %>
 
           <!-- Pagination -->
-          <!-- <nav class="flex justify-center pt-16" role="navigation" aria-label="Pagination Navigation">
-              <ul class="inline-flex flex-wrap font-medium text-sm -m-1">
-                  <li class="m-1">
-                      <span class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-4 rounded-full text-gray-500">Prev</span>
-                  </li>
-                  <li class="m-1">
-                      <a href="#0" class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-2 rounded-full text-gray-300 hover:bg-purple-600 transition-colors duration-150 ease-in-out">1</a>
-                  </li>
-                  <li class="m-1">
-                      <a href="#0" class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-2 rounded-full text-gray-300 hover:bg-purple-600 transition-colors duration-150 ease-in-out">2</a>
-                  </li>
-                  <li class="m-1">
-                      <a href="#0" class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-2 rounded-full text-gray-300 hover:bg-purple-600 transition-colors duration-150 ease-in-out">3</a>
-                  </li>
-                  <li class="m-1">
-                      <span class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-2 rounded-full text-gray-500">...</span>
-                  </li>
-                  <li class="m-1">
-                      <a href="#0" class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-2 rounded-full text-gray-300 hover:bg-purple-600 transition-colors duration-150 ease-in-out">12</a>
-                  </li>
-                  <li class="m-1">
-                      <a href="#0" class="inline-flex h-10 min-w-10 justify-center items-center bg-gray-800 px-4 rounded-full text-gray-300 hover:bg-purple-600 transition-colors duration-150 ease-in-out">Next</a>
-                  </li>
-              </ul>
-          </nav> -->
+          <%= paginate @articles, window: 2 %>
 
       </div>
   </div>

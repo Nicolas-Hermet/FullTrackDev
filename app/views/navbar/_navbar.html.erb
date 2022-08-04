@@ -21,9 +21,11 @@
                 <li>
                     <%= link_to 'Accueil', root_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out"%>
                 </li>
-                <li>
-                    <%= link_to 'Blog', articles_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out"%>
-                </li>
+                <% if @article_count > 0 %>
+                    <li>
+                        <%= link_to 'Blog', articles_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out"%>
+                    </li>
+                <% end %>
                 <li>
                     <%= link_to 'Mes activités pro', static_pages_landing_path, class: "text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" %>
                 </li>
