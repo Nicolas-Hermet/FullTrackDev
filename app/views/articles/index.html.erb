@@ -47,7 +47,7 @@
                             </h3>
                         </header>
                         <% if @last_published.content %>
-                            <p class="text-lg text-gray-400 grow"><%= @last_published.content&.to_plain_text.split('\n\n', 2)[0] %></p>
+                            <p class="text-lg text-gray-400 grow"><%= @last_published.content&.to_plain_text.truncate(300) %></p>
                         <% end %>
                         <footer class="flex flex-column items-center mt-4">
                             <span class="text-gray-500"><%= @last_published.published_at&.to_date %></span>
@@ -99,7 +99,7 @@
                                 <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
                             </h3>
                         </header>
-                        <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.split('\n\n', 2)[0] %></p>
+                        <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.truncate(300) %></p>
                         <footer class="flex items-center mt-4">
                             <span class="text-gray-500"><%= article.published_at&.to_date %></span>
                             <% if current_admin %>
