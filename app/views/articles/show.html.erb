@@ -52,7 +52,6 @@
                     <% if @article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
                         <%= image_tag @article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'w-full', width:'1024', height: '576', alt: 'Bannière article' %>
                     <% end %>
-                    <!-- <img class="w-full" src="../images/news-single.jpg" width="1024" height="576" alt="Article banner" /> -->
                   </figure>
 
                   <!-- Article content -->
