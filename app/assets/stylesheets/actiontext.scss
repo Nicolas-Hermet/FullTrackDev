@@ -255,3 +255,10 @@ trix-editor {
     border-color: currentColor
   }
 }
+
+
+trix-toolbar {
+  position: sticky;
+  top: 21px;
+  z-index: 1;
+}
