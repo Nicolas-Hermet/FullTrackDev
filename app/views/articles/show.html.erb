@@ -13,7 +13,7 @@
                           <h1 class="h1 mb-4" data-aos="fade-up">
                               <%= @article.title %>
                           </h1>
-                          <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200"><%= @article.content.to_plain_text.split('\n\n', 2)[0] %></p>
+                          <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200"><%= @article.content.to_plain_text.truncate(300) %></p>
                       </div>
                       <!-- Article meta -->
                       <div class="md:flex md:items-center md:justify-between mt-3">
@@ -52,7 +52,6 @@
                     <% if @article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
                         <%= image_tag @article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'w-full', width:'1024', height: '576', alt: 'Bannière article' %>
                     <% end %>
-                    <!-- <img class="w-full" src="../images/news-single.jpg" width="1024" height="576" alt="Article banner" /> -->
                   </figure>
 
                   <!-- Article content -->
@@ -63,7 +62,7 @@
                    <!-- Article footer -->
                    <footer>
                     <div class="md:flex md:items-center md:justify-between text-center md:text-left">
-                        <div class="text-lg text-gray-400 italic">Originally published at <%= link_to 'Full Track Dev', root_path, class: 'text-gray-200' %>.</div>
+                        <div class="text-lg text-gray-400 italic">Originally published at <%= link_to 'Full Track Dev', @article, class: 'text-gray-200' %>.</div>
                         <% if current_admin %>
                             <div class="text-lg text-gray-400 italic">
                                 <%= link_to 'Edit', edit_article_path(@article) %> |
@@ -98,8 +97,10 @@
                                 <header>
                                     <a class="block mb-6" href="blog-post.html">
                                         <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                                            <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
-                                                <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out', width:'352', height: '198', alt: 'Bannière article' %>
+                                            <% if article.rich_text_content %>
+                                                <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
+                                                    <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out', width:'352', height: '198', alt: 'Bannière article' %>
+                                                <% end %>
                                             <% end %>
                                         </figure>
                                     </a>
@@ -114,7 +115,7 @@
                                         <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
                                     </h3>
                                 </header>
-                                <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.split('\n\n', 2)[0] %></p>
+                                <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.truncate(300) %></p>
                                 <footer class="flex items-center mt-4">
                                     <div class="font-medium">
                                         <%= link_to 'Nicolas Hermet', root_path, class: 'text-gray-200 hover:text-gray-100 transition duration-150 ease-in-out' %>
