@@ -35,6 +35,9 @@ gem 'kaminari'
 # Letter_opener
 gem "letter_opener"
 
+# Embed in trix editor
+gem 'ruby-oembed'
+
 # SendinBlue API
 gem 'sib-api-v3-sdk'
 
