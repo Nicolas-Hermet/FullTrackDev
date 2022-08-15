@@ -1,0 +1,7 @@
+<% if embed.embed_type == "video" %>
+<div class="ratio ratio-16x9">
+<% else %>
+<div class="mx-auto text-center">
+<% end %>
+  <%= embed.html.html_safe %>
+</div>
