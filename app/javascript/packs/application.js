@@ -10,6 +10,7 @@ import "channels"
 import "../css/application"
 import './main-template'
 import './richtext'
+import './youtube'
 
 require.context("../../assets/images", true)
 
