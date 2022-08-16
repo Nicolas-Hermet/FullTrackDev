@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   resources :articles
-  resources :embed, only: :index
+  resources :embeds, only: :index
   root to: 'static_pages#home'
   get 'static_pages/home'
   get 'static_pages/landing'

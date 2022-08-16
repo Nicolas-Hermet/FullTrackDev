@@ -38,7 +38,7 @@ class Embed < ApplicationRecord
 
   def thumbnail
     if self.thumbnail_url.blank?
-      default_thumbnail
+      "https://picsum.photos/200/300?random=1"
     else
       self.thumbnail_url
     end

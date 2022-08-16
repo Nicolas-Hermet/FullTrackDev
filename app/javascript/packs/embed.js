@@ -87,9 +87,9 @@ document.addEventListener("trix-initialize", function(event) {
   const buttonRow = toolbarElement.querySelector(".trix-dialog__link-fields")
   buttonRow.insertAdjacentHTML("afterend", `
         <div class="form-group mt-2 mb-0" data-behavior="embed_container">
-          <div class="link_to_embed link_to_embed--new">
+          <div class="link_to_embed link_to_embed--new text-purple-400">
             Embed this media in your post?
-            <input class="btn btn-primary btn-sm ms-3" type="button" data-behavior="embed_url" value="Embed">
+            <input class="px-6 py-2 bg-purple-600 font-bold rounded ml-3" type="button" data-behavior="embed_url" value="Embed">
           </div>
         </div>
       `

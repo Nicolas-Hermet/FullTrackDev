@@ -1,3 +1,5 @@
 <div>
-  <%= image_pack_tag embed.thumbnail, class: "max-w-md" %>
+  <% if embed.thumbnail %>
+    <%= image_tag embed.thumbnail, class: "max-w-md" %>
+  <% end %>
 </div>
