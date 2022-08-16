@@ -5,6 +5,7 @@ class EmbedController {
   constructor(element) {
     this.patterns = [
         /^https:\/\/([^\.]+\.)?flickr\.com\/(.*)/,
+        /^https:\/\/([^\.]+\.)?gist.github\.com\/(.*)/,
         /^https:\/\/([^\.]+\.)?mixcloud\.com\/(.*)/,
         /^https:\/\/([^\.]+\.)?slideshare\.net\/(.*)/,
         /^https:\/\/([^\.]+\.)?soundcloud\.com\/(.*)/,
@@ -15,6 +16,7 @@ class EmbedController {
         /^https:\/\/([^\.]+\.)?vimeo\.com\/(\d*)/,
         /^https:\/\/([^\.]+\.)?youtu\.be\/(.*)/,
         /^https:\/\/([^\.]+\.)?youtube\.com\/watch\?v=(.*)/,
+        /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/,
       ]
 
     this.element = element
