@@ -10,6 +10,7 @@ import "channels"
 import "../css/application"
 import './main-template'
 import './richtext'
+import './embed'
 
 require.context("../../assets/images", true)
 
@@ -20,3 +21,5 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+import "controllers"

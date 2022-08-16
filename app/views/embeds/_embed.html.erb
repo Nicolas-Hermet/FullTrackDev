@@ -1,0 +1,7 @@
+<% if embed.embed_type == "video" %>
+<div class="aspect-video">
+<% else %>
+<div class="mx-auto text-center">
+<% end %>
+  <%= embed.html.html_safe %>
+</div>

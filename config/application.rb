@@ -39,5 +39,10 @@ module FullTrackDev
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
+
+    # To allow iframe in ActionText
+    config.to_prepare do
+      ActionText::ContentHelper.allowed_tags << "iframe"
+    end
   end
 end

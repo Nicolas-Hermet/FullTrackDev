@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_02_063053) do
+ActiveRecord::Schema.define(version: 2022_08_15_165726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -75,6 +75,28 @@ ActiveRecord::Schema.define(version: 2022_08_02_063053) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "embeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "url"
+    t.text "response"
+    t.string "type"
+    t.text "html"
+    t.string "title"
+    t.string "thumbnail_url"
+    t.integer "width"
+    t.integer "height"
+    t.integer "thumbnail_width"
+    t.integer "thumbnail_height"
+    t.string "embed_type"
+    t.string "author_url"
+    t.string "author_name"
+    t.string "provider_name"
+    t.string "provider_url"
+    t.string "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["id", "type"], name: "index_embeds_on_id_and_type"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
