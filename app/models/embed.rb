@@ -13,37 +13,35 @@ class Embed < ApplicationRecord
   def initialize(attributes = {})
     super(attributes)
 
-    if attributes && attributes[:url].present?
-      self.url = attributes[:url]
-      response = OEmbed::Providers.get(url)
-      Rails.logger.debug response.inspect
-      raise OEmbedError if response.nil?
+    return unless attributes && attributes[:url].present?
 
-      self.html = response.html
-      self.embed_type = response.type
-      self.title = response.try(:title)
-      self.thumbnail_url = response.try(:thumbnail_url) || response.try(:image)
-      self.thumbnail_width = response.try(:thumbnail_width)
-      self.thumbnail_height = response.try(:thumbnail_height)
-      self.width = response.try(:width)
-      self.height = response.try(:height)
-      self.author_url = response.try(:author_url)
-      self.author_name = response.try(:author_name)
-      self.provider_name = response.try(:provider_name)
-      self.provider_url = response.try(:provider_url)
-      self.version = response.try(:version)
+    self.url = attributes[:url]
+    response = OEmbed::Providers.get(url)
+    Rails.logger.debug response.inspect
+    raise OEmbedError if response.nil?
 
-    end
+    self.html = response.html
+    self.embed_type = response.type
+    self.title = response.try(:title)
+    self.thumbnail_url = response.try(:thumbnail_url) || response.try(:image)
+    self.thumbnail_width = response.try(:thumbnail_width)
+    self.thumbnail_height = response.try(:thumbnail_height)
+    self.width = response.try(:width)
+    self.height = response.try(:height)
+    self.author_url = response.try(:author_url)
+    self.author_name = response.try(:author_name)
+    self.provider_name = response.try(:provider_name)
+    self.provider_url = response.try(:provider_url)
+    self.version = response.try(:version)
   end
 
   def thumbnail
-    if self.thumbnail_url.blank?
+    if thumbnail_url.blank?
       "https://picsum.photos/200/300?random=1"
     else
-      self.thumbnail_url
+      thumbnail_url
     end
   end
-
 
   # this is the path used by Trix Editor to render the image of an attachment
   # inside the editor itself which can be different to what is rendered when
