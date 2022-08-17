@@ -11,7 +11,6 @@
 @import "trix/dist/trix";
 
 .trix-content {
-  color: white;
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
@@ -49,8 +48,8 @@ trix-editor {
   }
 
   a {
-    color: lightblue;
-    text-decoration: underline;
+    color: #8D8DFF !important;
+    text-decoration-style: solid !important;
   }
 
   blockquote {
@@ -100,6 +99,24 @@ trix-editor {
 }
 
 .trix-content {
+  a {
+    color: #8D8DFF;
+    text-decoration: underline dotted 1px;
+  }
+
+  a:hover {
+    color: #CBCCFF;
+  }
+
+  a:visited {
+    color: #55595F;
+    text-decoration-color: #55595F;
+  }
+
+  a:visited:hover {
+    color: #CBCCFF;
+  }
+
   div {
     margin-bottom: 8px;
   }
@@ -269,7 +286,7 @@ trix-editor {
     font-size: 12px;
     font-weight: bold;
     line-height: 16px;
-    border-color: #eee #ddd #bbb;
+    border-color: #CBCCFF #8D8DFF #38379C;
     border-radius: 5px;
     border-style: solid;
     border-width: 1px;
@@ -288,7 +305,7 @@ trix-editor {
   blockquote.twitter-tweet a {
     color: inherit;
     font-weight: normal;
-    text-decoration: none;
+    text-decoration: inherit;
     outline: 0 none;
   }
 
