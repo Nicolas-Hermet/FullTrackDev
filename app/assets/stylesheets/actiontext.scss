@@ -147,7 +147,6 @@ trix-editor {
     font-size: 1.875rem; /* 30px */
     line-height: 2.25rem; /* 36px */
     font-weight: 800;
-    line-height: 1.25;
     letter-spacing: -0.05em;
     color: #D9E3EA;
   }
@@ -157,7 +156,6 @@ trix-editor {
     font-size: 1.875rem; /* 30px */
     line-height: 2.25rem; /* 36px */
     font-weight: 700;
-    line-height: 1.25;
     color: #D9E3EA;
   }
 
@@ -166,7 +164,6 @@ trix-editor {
     font-size: 1.5rem; /* 24px */
     line-height: 2rem; /* 32px */
     font-weight: 500;
-    line-height: 1.375;
     letter-spacing: -0.025em;
     color: #D9E3EA;
   }
@@ -245,6 +242,8 @@ trix-editor {
 }
 
 .trix-content {
+  line-height: 2rem;
+
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     margin: 0;
