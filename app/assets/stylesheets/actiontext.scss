@@ -11,7 +11,8 @@
 @import "trix/dist/trix";
 
 .trix-content {
-  color: white;
+  line-height: 2rem;
+
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
@@ -36,70 +37,26 @@
       max-width: 100% !important;
     }
   }
-}
 
-trix-toolbar .trix-button-group button {
-  background-color: lightgray;
-}
-
-trix-editor {
-  h1 {
-    font-size: 24px;
-    font-weight: bold;
-  }
 
   a {
-    color: lightblue;
-    text-decoration: underline;
+    color: #8D8DFF;
+    text-decoration: underline dotted 1px;
   }
 
-  blockquote {
-    border: 0 solid #D9E3EA;
-    border-left-width: 0.3em;
-    margin-left: 0.3em;
-    padding-left: 0.6em;
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 40px;
-    margin-inline-end: 40px;
+  a:hover {
+    color: #CBCCFF;
   }
 
-  ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+  a:visited {
+    color: #55595F;
+    text-decoration-color: #55595F;
   }
 
-  ol {
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+  a:visited:hover {
+    color: #CBCCFF;
   }
 
-  pre {
-    color: black;
-    display: inline-block;
-    width: 100%;
-    vertical-align: top;
-    font-family: monospace;
-    font-size: 0.9em;
-    padding: 0.5em;
-    white-space: pre;
-    background-color: #eee;
-    overflow-x: auto;
-  }
-}
-
-.trix-content {
   div {
     margin-bottom: 8px;
   }
@@ -127,31 +84,33 @@ trix-editor {
   }
 
   h2 {
-    font-size: 1.875rem; /* 30px */
+    font-size: 2.25rem; /* 30px */
     line-height: 2.25rem; /* 36px */
     font-weight: 800;
-    line-height: 1.25;
     letter-spacing: -0.05em;
     color: #D9E3EA;
+    margin-bottom: 8px;
   }
 
   h3 {
     margin-bottom: 4px;
-    font-size: 1.875rem; /* 30px */
+    font-size: 1.625rem; /* 30px */
     line-height: 2.25rem; /* 36px */
     font-weight: 700;
-    line-height: 1.25;
     color: #D9E3EA;
   }
 
   h4 {
-    margin-bottom: 8px;
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.125rem; /* 24px */
     line-height: 2rem; /* 32px */
     font-weight: 500;
-    line-height: 1.375;
     letter-spacing: -0.025em;
     color: #D9E3EA;
+    margin-bottom: 2px;
+  }
+
+  h5 h6 {
+    font-size: 1.125rem;
   }
 
   ul {
@@ -166,9 +125,73 @@ trix-editor {
     margin-bottom: 8px;
     list-style-position: inside;
   }
+
+  .attachment { width: 100%; }
+
+  .attachment--content.attachment--horizontal-rule,
+  .attachment--content[data-trix-content-type~='vnd.rubyonrails.horizontal-rule.html'] {
+    padding: 1.5em 0 0.5em !important;
+    margin-bottom: 0.5em
+  }
+
+  .attachment--content.attachment--horizontal-rule hr,
+  .attachment--content[data-trix-content-type~='vnd.rubyonrails.horizontal-rule.html'] hr {
+    margin: 0;
+    width: 20%;
+    border-color: currentColor
+  }
+
+  // For Embedded Youtube
+  iframe {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+   }
+
+  // for Embedded tweets
+  blockquote.twitter-tweet {
+    display: inline-block;
+    font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    border-color: #CBCCFF #8D8DFF #38379C;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    margin: 10px 5px;
+    padding: 16px;
+    max-width: 468px;
+  }
+
+  blockquote.twitter-tweet p {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 20px;
+  }
+
+  blockquote.twitter-tweet a {
+    color: inherit;
+    font-weight: normal;
+    text-decoration: inherit;
+    outline: 0 none;
+  }
+
+  blockquote.twitter-tweet a:hover,
+  blockquote.twitter-tweet a:focus {
+    text-decoration: underline;
+  }
+
+  blockquote.twitter-tweet:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.30);
+  }
 }
 
-trix-toolbar {
+trix-toolbar .trix-button-group button {
+  background-color: lightgray;
+
+
   .trix-button--icon-horizontal-rule::before { background-image: url("trix_horizontal_rule.svg"); }
   .trix-button--icon-color::before { background-image: url("trix_color.svg"); }
 
@@ -219,26 +242,143 @@ trix-toolbar {
       opacity: 0;
     }
   }
+
+  position: sticky;
+  top: 21px;
+  z-index: 1;
+}
+
+trix-toolbar {
+  position: sticky;
+  top: 21px;
+  z-index: 1;
 }
 
 trix-editor {
-  [data-trix-mutable].attachment[data-trix-content-type~="vnd.rubyonrails.horizontal-rule.html"] {
-    box-shadow: 0 0 0 2px highlight;
-  }
-}
+  line-height: 2rem;
 
-.trix-content {
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
-    margin: 0;
+  .attachment-gallery {
+    > action-text-attachment,
+    > .attachment {
+      flex: 1 0 33%;
+      padding: 0 0.5em;
+      max-width: 33%;
+    }
+
+    &.attachment-gallery--2,
+    &.attachment-gallery--4 {
+      > action-text-attachment,
+      > .attachment {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+    }
   }
 
-  h1 { font-size: 36px; }
-  h2 { font-size: 26px; }
-  h3 { font-size: 18px; }
-  h4 { font-size: 18px; }
-  h5 { font-size: 14px; }
-  h6 { font-size: 12px; }
+  action-text-attachment {
+    .attachment {
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+  }
+
+
+  a {
+    color: #8D8DFF;
+    text-decoration: underline dotted 1px;
+  }
+
+  a:hover {
+    color: #CBCCFF;
+  }
+
+  a:visited {
+    color: #55595F;
+    text-decoration-color: #55595F;
+  }
+
+  a:visited:hover {
+    color: #CBCCFF;
+  }
+
+  div {
+    margin-bottom: 8px;
+  }
+
+  blockquote {
+    margin-bottom: 8px;
+    font-style: italic;
+    padding-left: 4px;
+    border-left: 2px;
+    border-color: #D9E3EA;
+  }
+
+  figure {
+    margin-bottom: 8px;
+    img {
+      width: 100%;
+    }
+    figcaption {
+      margin-top: 3px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      text-align: center;
+      color: #707D86;
+    }
+  }
+
+  h1 {
+    outline: red;
+    color: red;
+    font-size: 40px;
+  }
+
+  h1::after {
+    content: " NOPE !!";
+  }
+
+  h2 {
+    font-size: 2.25rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: #D9E3EA;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    margin-bottom: 4px;
+    font-size: 1.625rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: #D9E3EA;
+  }
+
+  h4 {
+    font-size: 1.125rem; /* 24px */
+    line-height: 2rem; /* 32px */
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: #D9E3EA;
+    margin-bottom: 2px;
+  }
+
+  h5 h6 {
+    font-size: 1.125rem;
+  }
+
+  ul {
+    margin-bottom: 8px;
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-bottom: 8px;
+    list-style-position: inside;
+  }
 
   .attachment { width: 100%; }
 
@@ -269,7 +409,7 @@ trix-editor {
     font-size: 12px;
     font-weight: bold;
     line-height: 16px;
-    border-color: #eee #ddd #bbb;
+    border-color: #CBCCFF #8D8DFF #38379C;
     border-radius: 5px;
     border-style: solid;
     border-width: 1px;
@@ -288,7 +428,7 @@ trix-editor {
   blockquote.twitter-tweet a {
     color: inherit;
     font-weight: normal;
-    text-decoration: none;
+    text-decoration: inherit;
     outline: 0 none;
   }
 
@@ -300,11 +440,21 @@ trix-editor {
   blockquote.twitter-tweet:hover {
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.30);
   }
-}
 
+  pre {
+    color: black;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    font-family: monospace;
+    font-size: 0.9em;
+    padding: 0.5em;
+    white-space: pre;
+    background-color: #eee;
+    overflow-x: auto;
+  }
 
-trix-toolbar {
-  position: sticky;
-  top: 21px;
-  z-index: 1;
+  [data-trix-mutable].attachment[data-trix-content-type~="vnd.rubyonrails.horizontal-rule.html"] {
+    box-shadow: 0 0 0 2px highlight;
+  }
 }
