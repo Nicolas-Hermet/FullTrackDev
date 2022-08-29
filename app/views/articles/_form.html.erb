@@ -5,7 +5,7 @@
           <!-- Page header -->
           <div class="mx-auto text-center pb-12 md:pb-16">
               <h1 class="h1 mb-4" data-aos="fade-up"><%= article.title || 'Nouvel Article' %></h1>
-              <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200"><%= article ? 'Une petite relecture qui ne fait pas de mal ;)' : 'Vas-y lâche toi !' %></p>
+              <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200"><%= article.new_record? ? 'Vas-y lâche toi !' : 'Une petite relecture qui ne fait pas de mal ;)'%></p>
           </div>
 
           <%= form_with(model: article, html: { class: 'w-full mx-auto'} ) do |form| %>
@@ -25,9 +25,6 @@
               <div class="field w-full md:w-1/2 px-3 mb-4 md:mb-0">
                 <%= form.label :title, class: 'block text-gray-300 text-sm font-medium mb-1' %>
                 <%= form.text_field :title, class: 'form-input w-full text-gray-300' %>
-              </div>
-              <div class="w-full md:w-1/2 px-3">
-                  <p>Future banniere ?</p>
               </div>
             </div>
 

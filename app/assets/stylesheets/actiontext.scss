@@ -126,6 +126,10 @@
     list-style-position: inside;
   }
 
+  strong {
+    color: #D9E3EA;
+  }
+
   .attachment { width: 100%; }
 
   .attachment--content.attachment--horizontal-rule,
@@ -378,6 +382,10 @@ trix-editor {
     list-style-type: decimal;
     margin-bottom: 8px;
     list-style-position: inside;
+  }
+
+  strong {
+    color: #D9E3EA;
   }
 
   .attachment { width: 100%; }
