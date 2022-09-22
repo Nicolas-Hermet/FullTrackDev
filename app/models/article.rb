@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
   has_rich_text :content
   paginates_per 12
+  validates :title, :category, :status, presence: true
 
   enum category: {
     perso: 0,
