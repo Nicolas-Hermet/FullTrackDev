@@ -9,7 +9,6 @@ RSpec.describe "articles/index", type: :view do
   end
 
   context 'when admin' do
-
     it "renders a list of articles" do
       render
 
