@@ -5,6 +5,6 @@ class ContactFormMailer < ApplicationMailer
     @name = params[:name]
     @email = params[:email]
     @message = params[:message]
-    mail(to: 'nico@fulltrack.dev', suject: 'A customer has a question')
+    mail(to: 'nico@fulltrack.dev', subject: "#{@name} has a question")
   end
 end

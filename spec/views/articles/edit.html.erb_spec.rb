@@ -10,18 +10,23 @@ RSpec.describe "articles/edit", type: :view do
                                 ))
   end
 
+  it 'renders a specific title and paragraph' do
+    render
+
+    assert_select 'p', 'Une petite relecture qui ne fait pas de mal ;)'
+  end
+
   it "renders the edit article form" do
     render
 
     assert_select "form[action=?][method=?]", article_path(@article), "post" do
-      pending 'It has to be changed into RSpec syntax, and also needs to be fix'
       assert_select "input[name=?]", "article[title]"
 
       assert_select "input[name=?]", "article[content]"
 
-      assert_select "input[name=?]", "article[category]"
+      assert_select "select[name=?]", "article[category]"
 
-      assert_select "input[name=?]", "article[status]"
+      assert_select "select[name=?]", "article[status]"
     end
   end
 end

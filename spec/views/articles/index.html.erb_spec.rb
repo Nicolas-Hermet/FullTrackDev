@@ -1,29 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "articles/index", type: :view do
+  let(:articles) { create_list(:article, 2, status: 'published') }
+
   before(:each) do
-    assign(:articles, [
-             Article.create!(
-               title: "Title",
-               content: nil,
-               category: 2,
-               status: 0
-             ),
-             Article.create!(
-               title: "Title",
-               content: nil,
-               category: 2,
-               status: 1
-             )
-           ])
+    assign(:articles, Kaminari.paginate_array(articles).page(1))
+    assign(:last_published, articles.first)
   end
 
-  it "renders a list of articles" do
-    pending 'This test has to be fixed'
-    render
-    assert_select "tr>td", text: "Title".to_s, count: 2
-    assert_select "tr>td", text: nil.to_s, count: 2
-    assert_select "tr>td", text: 2.to_s, count: 2
-    assert_select "tr>td", text: 3.to_s, count: 2
+  context 'when admin' do
+    it "renders a list of articles" do
+      render
+
+      assert_select "h3", count: 3
+      assert_select "article", count: 3
+    end
   end
 end

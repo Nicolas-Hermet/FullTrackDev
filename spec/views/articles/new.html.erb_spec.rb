@@ -10,18 +10,23 @@ RSpec.describe "articles/new", type: :view do
                      ))
   end
 
+  it 'renders a specific title and paragraph' do
+    render
+
+    assert_select 'p', 'Vas-y lâche toi !'
+  end
+
   it "renders new article form" do
     render
 
     assert_select "form[action=?][method=?]", articles_path, "post" do
-      pending 'another failing test that has to be fixed'
       assert_select "input[name=?]", "article[title]"
 
       assert_select "input[name=?]", "article[content]"
 
-      assert_select "input[name=?]", "article[category]"
+      assert_select "select[name=?]", "article[category]"
 
-      assert_select "input[name=?]", "article[status]"
+      assert_select "select[name=?]", "article[status]"
     end
   end
 end
