@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  authenticate :admin do # Supposing there is a User#admin? method
+    mount ActiveAnalytics::Engine, at: "analytics" # http://localhost:3000/analytics
+  end
+
   devise_for :admins
   resources :articles
   resources :embeds, only: :index
