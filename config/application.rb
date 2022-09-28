@@ -44,5 +44,8 @@ module FullTrackDev
     config.to_prepare do
       ActionText::ContentHelper.allowed_tags << "iframe"
     end
+
+    # Add Crawler detection for Analytics (prevent robots from being part of statistics)
+    config.middleware.use Rack::CrawlerDetect
   end
 end
