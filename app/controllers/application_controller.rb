@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def record_page_view
-    unless request.is_crawler?
-      ActiveAnalytics.record_request(request)
-    end
+    return if request.is_crawler?
+
+    ActiveAnalytics.record_request(request)
   end
 end
