@@ -31,16 +31,10 @@
                                   <li class="m-1">
                                       <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-<%= @article.category %> transition duration-150 ease-in-out" href="#0"><%= @article.category %></a>
                                   </li>
-                                  <% if current_admin && @article.status %>
-                                    <% if @article.published? %>
+                                  <% if current_admin %>
                                     <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @article.status %></a>
+                                        <a class="inline-flex text-center text-3xl py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @article.published? ? '✅️' : '❌️' %></a>
                                     </li>
-                                    <% else %>
-                                    <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @article.status %></a>
-                                    </li>
-                                    <% end %>
                                   <% end %>
                               </ul>
                           </div>
