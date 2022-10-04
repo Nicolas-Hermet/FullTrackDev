@@ -31,13 +31,13 @@
                             <div class="mb-3">
                                 <ul class="flex flex-wrap text-xs font-medium -m-1">
                                     <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= @last_published.category %></a>
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-<%= @last_published.category %> transition duration-150 ease-in-out" href="#0"><%= @last_published.category %></a>
                                     </li>
 
-                                    <% if current_admin && @last_published.status %>
-                                    <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @last_published.status %></a>
-                                    </li>
+                                    <% if current_admin %>
+                                        <li class="m-1">
+                                            <a class="inline-flex text-center text-3xl py-1 px-3 rounded-full transition duration-150 ease-in-out" href="#0"><%= @last_published.published? ? '✅️' : '❌️' %></a>
+                                        </li>
                                     <% end %>
 
                                 </ul>
@@ -80,18 +80,12 @@
                             <div class="mb-3">
                                 <ul class="flex flex-wrap text-xs font-medium -m-1">
                                     <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out" href="#0"><%= article.category %></a>
+                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-<%= article.category %> transition duration-150 ease-in-out" href="#0"><%= article.category %></a>
                                     </li>
-                                    <% if current_admin && article.status %>
-                                        <% if article.published? %>
+                                    <% if current_admin %>
                                         <li class="m-1">
-                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out" href="#0"><%= @last_published.status %></a>
+                                            <a class="inline-flex text-center text-3xl py-1 px-3 rounded-full transition duration-150 ease-in-out" href="#0"><%= article.published? ? '✅️' : '❌️' %></a>
                                         </li>
-                                        <% else %>
-                                        <li class="m-1">
-                                            <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 transition duration-150 ease-in-out" href="#0"><%= @last_published.status %></a>
-                                        </li>
-                                        <% end %>
                                     <% end %>
                                 </ul>
                             </div>
