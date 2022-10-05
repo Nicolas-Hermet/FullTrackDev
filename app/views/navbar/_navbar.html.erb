@@ -31,9 +31,9 @@
                     <% if current_page?(static_pages_landing_path) %>
                         <a class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" href="#hire"><button class="px-6 py-2 bg-purple-800 font-bold">Discutons</button></a>
                     <% else %>
-                        <%= link_to static_pages_landing_path(static_pages_landing_path, anchor: 'hire'), class:"text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out" do %>
+                        <a href="/static_pages/landing#hire" class="text-gray-300 hover:text-gray-200 px-4 py-2 flex items-center transition duration-150 ease-in-out">
                             <button class="px-6 py-2 bg-purple-800 font-bold">Contact</button>
-                        <% end %>
+                        </a>
                     <% end %>
                 </li>
               </ul>
@@ -89,9 +89,9 @@
                         <% if current_page?(static_pages_landing_path) %>
                             <a class="flex text-gray-300 hover:text-gray-200 py-2" href="#hire"><button class="px-6 py-2 bg-purple-600 font-bold">Discutons</button></a>
                         <% else %>
-                            <%= link_to static_pages_landing_path(static_pages_landing_path, anchor: 'hire'), class:"flex text-gray-300 hover:text-gray-200 py-2" do %>
+                            <a href="/static_pages/landing#hire" class="flex text-gray-300 hover:text-gray-200 py-2">
                                 <button class="px-6 py-2 bg-purple-600 font-bold">Contact</button>
-                            <% end %>
+                            </a>
                         <% end %>
                     </li>
                   </ul>
