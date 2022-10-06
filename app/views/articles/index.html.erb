@@ -62,48 +62,8 @@
                 <!-- Section title -->
                 <h2 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Mes derniers articles</h2>
 
-                <!-- Articles container -->
-                <div class="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
-                    <% @articles.each do |article| %>
-                    <!-- 1st article -->
-                    <article class="flex flex-col h-full" data-aos="fade-up">
-                        <header>
-                            <%= link_to article, class: 'block mb-6' do %>
-                            <figure class="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                                <% if article.rich_text_content %>
-                                    <% if article.rich_text_content.embeds.find{|embeds| embeds.image?} %>
-                                        <%= image_tag article.rich_text_content.embeds.find{|embeds| embeds.image?}, class: 'absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out' %>
-                                    <% end %>
-                                <% end %>
-                            </figure>
-                            <% end %>
-                            <div class="mb-3">
-                                <ul class="flex flex-wrap text-xs font-medium -m-1">
-                                    <li class="m-1">
-                                        <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-<%= article.category %> transition duration-150 ease-in-out" href="#0"><%= article.category %></a>
-                                    </li>
-                                    <% if current_admin %>
-                                        <li class="m-1">
-                                            <a class="inline-flex text-center text-3xl py-1 px-3 rounded-full transition duration-150 ease-in-out" href="#0"><%= article.published? ? '✅️' : '❌️' %></a>
-                                        </li>
-                                    <% end %>
-                                </ul>
-                            </div>
-                            <h3 class="h4 mb-2">
-                                <%= link_to article.title, article, class: 'hover:text-gray-100 transition duration-150 ease-in-out' %>
-                            </h3>
-                        </header>
-                        <p class="text-lg text-gray-400 grow"><%= article.content.to_plain_text.truncate(300) %></p>
-                        <footer class="flex items-center mt-4">
-                            <span class="text-gray-500"><%= article.published_at&.to_date %></span>
-                            <% if current_admin %>
-                            <span class="text-gray-500 mx-1">  <%= link_to 'Edit', edit_article_path(article) %>  </span>
-                            <span class="text-gray-500 mx-1">  <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>  </span>
-                            <% end %>
-                        </footer>
-                    </article>
-                    <% end %>
-                </div>
+                <!-- Articles list -->
+                <%= render 'articles', articles: @articles %>
             </div>
 
           <% end %>
