@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @last_published = Article.order(published_at: :asc).first
+    last_published
     @articles = current_admin ? Article.page(params[:page]) : Article.where(status: :published).page(params[:page])
     @articles.order(published_at: :asc).with_rich_text_content_and_embeds
   end
@@ -52,6 +52,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def last_published
+    @last_published ||= Article.order(published_at: :asc).first
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_article
