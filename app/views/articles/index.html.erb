@@ -56,9 +56,21 @@
                 </article>
             </div>
 
-            <!-- Articles list -->
-            <div class="max-w-sm mx-auto md:max-w-none">
+            <div id="category-filter">
+                <label for="category-select">Filtrer par catégorie :</label>
+                <select id="category-select" name="category">
+                  <option value="">Toutes</option>
+                  <!-- Add your categories here -->
+                  <!-- <option value="perso">Perso</option> -->
+                  <option value="racing">Racing</option>
+                  <!-- <option value="tech">Tech</option> -->
+                  <option value="remote">remote</option>
+                  <!-- <option value="good_read">good_read</option> -->
+                </select>
+              </div>
 
+            <!-- Articles list -->
+            <div id="articles-container" class="max-w-sm mx-auto md:max-w-none">
                 <!-- Section title -->
                 <h2 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Mes derniers articles</h2>
 
