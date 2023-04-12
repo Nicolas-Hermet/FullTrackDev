@@ -10,6 +10,16 @@ class ArticlesController < ApplicationController
     @articles.order(published_at: :asc).with_rich_text_content_and_embeds
   end
 
+  def filter_by_category
+    category = params[:category]
+    @articles = current_admin ? Article.where(category: category).page(params[:page]) : Article.where(status: :published, category: category).page(params[:page])
+    @articles = @articles.order(published_at: :asc).with_rich_text_content_and_embeds
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /articles/1 or /articles/1.json
   def show
     redirect_to articles_path unless @article.published? || current_admin
