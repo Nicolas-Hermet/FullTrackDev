@@ -1,6 +1,9 @@
+// Articles list
 document.querySelector("#articles-container").innerHTML = `
 <!-- Section title -->
 <h2 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Mes derniers articles</h2>
-
-<!-- Articles list -->
 <%= j render 'articles', articles: @articles %>`;
+
+// Pagination
+var paginationHtml = '<%= escape_javascript(render("articles/pagination", articles: @articles, category: @category)) %>';
+document.querySelector('#pagination-container').innerHTML = paginationHtml;

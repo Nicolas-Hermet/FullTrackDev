@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :related_articles, only: :show
-  before_action :authenticate_admin!, except: %i[show index]
+  before_action :authenticate_admin!, except: %i[show index filter_by_category]
 
   # GET /articles or /articles.json
   def index
@@ -11,8 +11,8 @@ class ArticlesController < ApplicationController
   end
 
   def filter_by_category
-    category = params[:category]
-    @articles = current_admin ? Article.where(category: category).page(params[:page]) : Article.where(status: :published, category: category).page(params[:page])
+    @category = params[:category]
+    @articles = current_admin ? Article.where(category: @category).page(params[:page]) : Article.where(status: :published, category: @category).page(params[:page])
     @articles = @articles.order(published_at: :asc).with_rich_text_content_and_embeds
 
     respond_to do |format|

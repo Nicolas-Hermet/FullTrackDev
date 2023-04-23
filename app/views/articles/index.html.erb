@@ -81,7 +81,9 @@
           <% end %>
 
           <!-- Pagination -->
-          <%= paginate @articles, window: 2 %>
+          <div id="pagination-container">
+            <%= render 'pagination', articles: @articles, category: @category %>
+          </div>
 
       </div>
   </div>
