@@ -23,21 +23,3 @@ require("trix")
 require("@rails/actiontext")
 
 import "controllers"
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const categorySelect = document.getElementById('category-select');
-
-  if (categorySelect) {
-    categorySelect.addEventListener('change', (event) => {
-      const category = event.target.value;
-      const url = `/articles/filter_by_category?category=${category}`;
-
-      Rails.ajax({
-        url,
-        type: 'GET',
-        dataType: 'script',
-      });
-    });
-  }
-});

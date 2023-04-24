@@ -56,18 +56,10 @@
                 </article>
             </div>
 
-            <div id="category-filter">
-                <label for="category-select">Filtrer par catégorie :</label>
-                <select id="category-select" name="category">
-                  <option value="">Toutes</option>
-                  <!-- Add your categories here -->
-                  <!-- <option value="perso">Perso</option> -->
-                  <option value="racing">Racing</option>
-                  <!-- <option value="tech">Tech</option> -->
-                  <option value="remote">remote</option>
-                  <!-- <option value="good_read">good_read</option> -->
-                </select>
-              </div>
+            <div id="category-chips">
+                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-racing transition duration-150 ease-in-out" data-category="Racing">Racing</div>
+                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-remote transition duration-150 ease-in-out" data-category="Remote">Remote</div>
+            </div>
 
             <!-- Articles list -->
             <div id="articles-container" class="max-w-sm mx-auto md:max-w-none">

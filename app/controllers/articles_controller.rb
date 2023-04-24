@@ -11,8 +11,9 @@ class ArticlesController < ApplicationController
   end
 
   def filter_by_category
-    @category = params[:category]
-    @articles = current_admin ? Article.where(category: @category).page(params[:page]) : Article.where(status: :published, category: @category).page(params[:page])
+    @categories = params[:categories]&.split(",") || []
+    @articles = current_admin ? Article.page(params[:page]) : Article.where(status: :published).page(params[:page])
+    @articles = @articles.where(category: @categories) if @categories.any?
     @articles = @articles.order(published_at: :asc).with_rich_text_content_and_embeds
 
     respond_to do |format|
