@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
+      const category = chip.dataset.category.toLowerCase();
+      console.log('category', category, `category-${category}`);
       chip.classList.toggle("selected");
+      chip.classList.toggle(`category-${category}`);
       const selectedCategories = Array.from(chips)
       .filter((chip) => chip.classList.contains("selected"))
       .map((chip) => chip.dataset.category.toLowerCase())

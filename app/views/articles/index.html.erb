@@ -56,15 +56,19 @@
                 </article>
             </div>
 
+            <h2 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Mes derniers articles</h2>
+
             <div id="category-chips">
-                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-racing transition duration-150 ease-in-out" data-category="Racing">Racing</div>
-                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 rounded-full category-remote transition duration-150 ease-in-out" data-category="Remote">Remote</div>
+                <!-- <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Perso">Perso</div>
+                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Tech">Tech</div> -->
+                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Remote">Remote</div>
+                <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Racing">Racing</div>
+                <!-- <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Good_Read">Good_read</div> -->
             </div>
 
             <!-- Articles list -->
             <div id="articles-container" class="max-w-sm mx-auto md:max-w-none">
                 <!-- Section title -->
-                <h2 class="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Mes derniers articles</h2>
 
                 <!-- Articles list -->
                 <%= render 'articles', articles: @articles %>
