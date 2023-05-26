@@ -13,8 +13,13 @@ class ArticlesController < ApplicationController
   def filter_by_category
     last_published
     @categories = params[:categories]&.split(",") || []
-    @articles = current_admin ? Article.page(params[:page]) : Article.where(status: :published).page(params[:page])
+    @status = params[:status] || [:published, :draft] if current_admin
+    @articles = Article.page(params[:page])
     @articles = @articles.where(category: @categories) if @categories.any?
+    if current_admin && @status
+      @articles = @articles.where(status: @status)
+    end
+
     @articles = @articles.order(published_at: :asc).with_rich_text_content_and_embeds
 
     respond_to do |format|

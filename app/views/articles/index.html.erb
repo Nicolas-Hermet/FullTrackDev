@@ -64,6 +64,12 @@
                 <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Remote">Remote</div>
                 <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Racing">Racing</div>
                 <!-- <div class="chip inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-category="Good_Read">Good_read</div> -->
+
+                <% if current_admin %>
+                    <div class="chip-admin inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-status="Draft">Draft</div>
+                    <div class="chip-admin inline-flex text-center text-gray-100 py-1 px-3 border-2 border-gray-500 rounded-full transition duration-150 ease-in-out" data-status="Published">Published</div>
+                <% end %>
+
             </div>
 
             <!-- Articles list -->

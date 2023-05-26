@@ -4,5 +4,5 @@ document.querySelector("#articles-container").innerHTML = `
 <%= j render 'articles', articles: @articles %>`;
 
 // Pagination
-var paginationHtml = '<%= escape_javascript(render("articles/pagination", articles: @articles, category: @category)) %>';
+var paginationHtml = '<%= escape_javascript(render("articles/pagination", articles: @articles, category: @category, status: @status)) %>';
 document.querySelector('#pagination-container').innerHTML = paginationHtml;

@@ -5,4 +5,20 @@
 .chip {
   cursor: pointer;
   border-color: #007bff;
+
+  .selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+}
+
+.chip-admin {
+  cursor: pointer;
+  border-color: #007bff;
+
+}
+
+.chip-admin.selected {
+  background-color: #007bff;
+  color: #fff;
 }
