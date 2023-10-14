@@ -39,7 +39,7 @@ jobs:
         run: bin/rails db:schema:load
       # Compile webpacker
       - name: compile webpack
-        run: RAILS_ENV=test bin/rake assets:precompile
+        run: bin/rails assets:precompile
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec
