@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins
+  get 'articles/filter_by_category', to: 'articles#filter_by_category', as: 'filter_by_category'
   resources :articles
+
   resources :embeds, only: :index
   root to: 'static_pages#home'
   get 'static_pages/home'

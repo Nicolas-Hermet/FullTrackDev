@@ -1,13 +1,34 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :related_articles, only: :show
-  before_action :authenticate_admin!, except: %i[show index]
+  before_action :authenticate_admin!, except: %i[show index filter_by_category]
 
   # GET /articles or /articles.json
   def index
-    @last_published = Article.order(published_at: :asc).first
+    last_published
     @articles = current_admin ? Article.page(params[:page]) : Article.where(status: :published).page(params[:page])
     @articles.order(published_at: :asc).with_rich_text_content_and_embeds
+  end
+
+  def filter_by_category
+    last_published
+    @categories = params[:categories]&.split(",") || []
+    @status = :published
+    if current_admin
+      @status = params[:status].blank? ? [:published, :draft] : params[:status]
+    end
+    @articles = Article.page(params[:page])
+    @articles = @articles.where(category: @categories) if @categories.any?
+    if current_admin && @status
+      @articles = @articles.where(status: @status)
+    end
+
+    @articles = @articles.order(published_at: :asc).with_rich_text_content_and_embeds
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js
+    end
   end
 
   # GET /articles/1 or /articles/1.json
@@ -52,6 +73,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def last_published
+    @last_published ||= Article.order(published_at: :asc).last
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_article
