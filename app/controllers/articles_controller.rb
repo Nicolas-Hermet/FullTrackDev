@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
   private
 
   def last_published
-    @last_published ||= Article.order(published_at: :asc).first
+    @last_published ||= Article.order(published_at: :asc).last
   end
 
   # Use callbacks to share common setup or constraints between actions.
