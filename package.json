@@ -28,7 +28,6 @@
     "babel-plugin-macros": "^3.1.0",
     "compression-webpack-plugin": "^9.2.0",
     "core-js": "^3.45.0",
-    "postcss": "^7.0.39",
     "regenerator-runtime": "^0.14.1",
     "shakapacker": "8.3.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
@@ -38,18 +37,18 @@
     "webpack": "^5.101.0",
     "webpack-assets-manifest": "^5.2.1",
     "webpack-cli": "^4.10.0",
-    "webpack-merge": "^5.10.0"
-  },
-  "version": "0.1.0",
-  "devDependencies": {
-    "css-loader": "^6.10.0",
-    "cz-conventional-changelog": "^3.3.0",
+    "webpack-merge": "^5.10.0",
     "mini-css-extract-plugin": "^2.8.0",
-    "postcss": "^8.4.38",
+    "css-loader": "^6.10.0",
     "postcss-loader": "^7.3.4",
     "sass": "^1.77.0",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.4",
+    "postcss": "^8.4.38"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
     "webpack-dev-server": "^4.15.2"
   },
   "config": {
@@ -57,6 +56,10 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "engines": {
+  "node": ">=18 <23",
+  "npm": ">=9"
+},
   "browserslist": [
     "defaults"
   ],
