@@ -8,7 +8,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "../css/application"
+import '../css/application.scss'
 import './main-template'
 import './richtext'
 import './embed'

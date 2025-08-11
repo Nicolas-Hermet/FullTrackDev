@@ -15,7 +15,6 @@
     "@rails/actiontext": "^7.1.0",
     "@rails/activestorage": "^7.1.0",
     "@rails/ujs": "^7.1.0",
-    "@rails/webpacker": "5.4.4",
     "@types/babel__core": "^7.20.5",
     "@types/webpack": "^5.28.5",
     "alpine-turbo-drive-adapter": "^2.0.0",

@@ -1,4 +1,4 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require('shakapacker')
 
 // Ensure Babel transpiles our JS (including class features plugins configured in babel.config.js)
 environment.loaders.append('babel', {
