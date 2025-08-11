@@ -1,16 +1,16 @@
 const { environment } = require('shakapacker')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-// In production, extract CSS to standalone files. In dev, inject via style-loader.
 const isProd = process.env.NODE_ENV === 'production'
 
-// --- JavaScript (unchanged from your setup) ---
+try { environment.loaders.delete('sass') } catch (e) {}
+try { environment.loaders.delete('scss') } catch (e) {}
+try { environment.loaders.delete('css') } catch (e) {}
+
 environment.loaders.append('babel', {
   test: /\.m?js$/,
   exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader'
-  }
+  use: { loader: 'babel-loader' }
 })
 
 // --- CSS ---
@@ -34,10 +34,9 @@ const scssRule = {
   ]
 }
 
-environment.loaders.prepend('css', cssRule)
-environment.loaders.prepend('scss', scssRule)
+environment.loaders.append('css', cssRule)
+environment.loaders.append('scss', scssRule)
 
-// --- Plugins ---
 if (isProd) {
   environment.plugins.prepend(
     'MiniCssExtractPlugin',
