@@ -1,7 +1,10 @@
 const { environment } = require('shakapacker')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd =
+  process.env.NODE_ENV === 'production' ||
+  process.env.RAILS_ENV === 'production' ||
+  process.env.SHAKAPACKER_ENV === 'production';
 
 try { environment.loaders.delete('sass') } catch (e) {}
 try { environment.loaders.delete('scss') } catch (e) {}
