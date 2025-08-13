@@ -1,5 +1,10 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+// See the shakacode/shakapacker README and docs directory for advice on customizing your webpackConfig.
+const { generateWebpackConfig } = require('shakapacker')
+const { merge } = require('webpack-merge')
 
-const environment = require('./environment')
-
-module.exports = environment.toWebpackConfig()
+// Do NOT redefine CSS/SCSS rules here. Those are configured in config/webpack/environment.js
+module.exports = merge(generateWebpackConfig(), {
+  resolve: {
+    extensions: ['.js', '.mjs', '.scss', '.css']
+  }
+})
