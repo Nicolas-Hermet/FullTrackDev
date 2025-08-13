@@ -10,11 +10,11 @@
     <% if content_for?(:webpack_styles) %>
       <%= yield :webpack_styles %>
     <% else %>
-      <%= stylesheet_packs_with_chunks_tag 'application', media: 'all' %>
+      <%= stylesheet_pack_tag 'application', media: 'all' %>
     <% end %>
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <%= yield :recaptcha_js %>
-    <%= yield :webpack_entry %>
+    <%= content_for?(:webpack_entry) ? yield(:webpack_entry) : javascript_pack_tag('application', defer: true) %>
 
   </head>
 
