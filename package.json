@@ -28,8 +28,16 @@
     "babel-plugin-macros": "^3.1.0",
     "compression-webpack-plugin": "^9.2.0",
     "core-js": "^3.45.0",
+    "css-loader": "^6.10.0",
+    "mini-css-extract-plugin": "^2.8.0",
+    "postcss": "^8.4.38",
+    "postcss-import": "^16.1.1",
+    "postcss-loader": "^7.3.4",
     "regenerator-runtime": "^0.14.1",
+    "sass": "^1.77.0",
+    "sass-loader": "^13.3.2",
     "shakapacker": "8.3.0",
+    "style-loader": "^3.3.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "terser-webpack-plugin": "^5.3.14",
     "trix": "^2.0.0",
@@ -37,14 +45,7 @@
     "webpack": "^5.101.0",
     "webpack-assets-manifest": "^5.2.1",
     "webpack-cli": "^4.10.0",
-    "webpack-merge": "^5.10.0",
-    "mini-css-extract-plugin": "^2.8.0",
-    "css-loader": "^6.10.0",
-    "postcss-loader": "^7.3.4",
-    "sass": "^1.77.0",
-    "sass-loader": "^13.3.2",
-    "style-loader": "^3.3.4",
-    "postcss": "^8.4.38"
+    "webpack-merge": "^5.10.0"
   },
   "version": "0.1.0",
   "devDependencies": {
@@ -57,9 +58,9 @@
     }
   },
   "engines": {
-  "node": ">=18 <23",
-  "npm": ">=9"
-},
+    "node": ">=18 <23",
+    "npm": ">=9"
+  },
   "browserslist": [
     "defaults"
   ],
