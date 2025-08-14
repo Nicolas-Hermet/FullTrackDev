@@ -10,7 +10,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # Add Trix & Action Text assets
 Rails.application.config.assets.paths << Rails.root.join('node_modules/trix/dist')
-Rails.application.config.assets.precompile += %w( trix.css trix.js )
+Rails.application.config.assets.precompile += %w(trix.css trix.js)
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
