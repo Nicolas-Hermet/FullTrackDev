@@ -42,6 +42,9 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
 
+      # Compile webpacker
+      - name: compile webpack
+        run: rake assets:precompile
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec
