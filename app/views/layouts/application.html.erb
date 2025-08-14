@@ -7,11 +7,14 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if content_for?(:webpack_styles) %>
+      <%= yield :webpack_styles %>
+    <% else %>
+      <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <% end %>
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <%= javascript_pack_tag 'articles' %>
     <%= yield :recaptcha_js %>
+    <%= content_for?(:webpack_entry) ? yield(:webpack_entry) : javascript_pack_tag('application', defer: true) %>
 
   </head>
 

@@ -11,7 +11,7 @@ class Embed < ApplicationRecord
   class OEmbedError < StandardError; end
 
   def initialize(attributes = {})
-    super(attributes)
+    super
 
     return unless attributes && attributes[:url].present?
 

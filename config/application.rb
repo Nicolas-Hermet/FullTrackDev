@@ -40,11 +40,6 @@ module FullTrackDev
       g.orm :active_record, primary_key_type: :uuid
     end
 
-    # To allow iframe in ActionText
-    config.to_prepare do
-      ActionText::ContentHelper.allowed_tags << "iframe"
-    end
-
     # Add Crawler detection for Analytics (prevent robots from being part of statistics)
     config.middleware.use Rack::CrawlerDetect
   end
