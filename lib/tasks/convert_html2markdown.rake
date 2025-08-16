@@ -1,0 +1,44 @@
+desc 'Will convert every article into markdown file with proper script to donwload images'
+task convert_html2markdown: :environment do
+  puts "||\n" * 10
+  puts '========= Remove this line and above =========' # This trick helps sanitize the output file in case tee has to output something else than our prints
+  puts "#!/bin/bash"
+
+  articles_path = 'content/blog/'
+  images_path = 'public/images/'
+  Article.find_each do |article|
+    article_slug = article.slug
+    images_path += article_slug + '/'
+
+    puts "mkdir -p #{images_path}"
+    puts "mkdir -p #{articles_path}"
+    puts "touch #{articles_path}#{article_slug}.md"
+    attachables = article.content.body.attachables.reject{ |attachable| attachable.instance_of? ActionText::Attachables::ContentAttachment }
+    attachables.each do |attachable|
+      # Download the image if it is a blob
+      puts "curl -L #{attachable.url} > #{images_path}#{attachable.filename.as_json}" if attachable.instance_of? ActiveStorage::Blob
+    end
+    header = <<~HEADER
+      ---
+      title: "#{article.title}"
+      summary: "#{article.rich_text_content.body.to_plain_text.truncate(150).gsub(/\[.*\]/, '').gsub("\n", ' ')}" # remove the image caption of the image banner.
+      published: "#{article.published?}"
+      publishedAt: "#{article.published_at&.strftime('%Y-%m-%d') if article.published?}"
+      image: "/images/#{article_slug}/#{attachables.first.filename.as_json}"
+      author: "Nicolas Hermet"
+      authorImg: "/images/post-author-04.jpg"
+      authorRole: "Software Engineer"
+      authorLink: "https://www.fulltrack.dev"
+      category: "#{article.category}"
+      ---
+    HEADER
+    content = article.content.body.to_html.gsub('action-text-attachment', 'richtext') # TODO: This is an ugly trick for the reversed markdown gem to work. It should be just `article.content.body.to_html`
+    markdown = "#{header}\n#{ReverseMarkdown.convert(content, attachables: attachables, article_slug: article_slug)}"
+    puts "cat <<'EOF' > #{articles_path}#{article_slug}.md"
+    puts markdown
+    puts "EOF"
+  end
+
+  puts '========= Remove this line and below ========='
+  puts "||\n" * 10
+end
