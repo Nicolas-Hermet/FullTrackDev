@@ -33,6 +33,16 @@ jobs:
         uses: actions/setup-node@v4.4.0
         with:
           node-version: '20'
+          cache: 'npm'
+
+      - name: Ensure npm online mode
+        run: |
+          npm config delete offline || true
+          npm config set prefer-online true
+          npm config set registry https://registry.npmjs.org/
+
+      - name: Install JS dependencies
+        run: npm ci --no-audit --no-fund
       # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1.255.0 # v1.92
