@@ -292,6 +292,8 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    reverse_markdown (3.0.0)
+      nokogiri
     rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
@@ -423,6 +425,7 @@ DEPENDENCIES
   puma (>= 6.4.2)
   rack-mini-profiler (~> 2.0)
   rails (~> 7.2.2.1)
+  reverse_markdown
   rspec-rails (~> 8.0.2)
   rubocop-rails
   rubocop-rspec
