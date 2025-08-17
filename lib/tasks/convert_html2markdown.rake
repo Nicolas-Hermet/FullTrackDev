@@ -22,7 +22,7 @@ task convert_html2markdown: :environment do
       next unless attachable.instance_of?(ActiveStorage::Blob)
 
       # Generate a long-lived presigned URL to avoid expirations during batch download
-      url = attachable.service_url(expires_in: 24.hours)
+      url = attachable.url(expires_in: 24.hours)
       # Build safe destination path
       dest_path = File.join(images_path, attachable.filename.to_s)
       # Print a robust curl line: fail on HTTP errors, follow redirects, retry transient errors, quote URL, and write to escaped path
