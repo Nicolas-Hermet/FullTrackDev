@@ -115,7 +115,7 @@ module ReverseMarkdown
       def convert(node, state = {}, attachables: [], article_slug: nil)
         # Remove the first item from the mutable object attachables.
         attachable = attachables.shift
-        case attachable
+        case attachable.class
         when ActiveStorage::Blob
           "<Image src=\"images/#{article_slug}/#{attachables.first.filename}\" alt=\"#{attachables.first.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
         when Embed
