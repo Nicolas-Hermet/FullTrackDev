@@ -1,8 +1,6 @@
 require 'shellwords'
 desc 'Will convert every article into markdown file with proper script to donwload images'
 task convert_html2markdown: :environment do
-  puts "||\n" * 10
-  puts '========= Remove this line and above =========' # This trick helps sanitize the output file in case tee has to output something else than our prints
   puts "#!/bin/bash"
   puts "set -euo pipefail"
 
@@ -47,8 +45,6 @@ task convert_html2markdown: :environment do
     puts "cat <<'EOF' > #{Shellwords.escape(md_path)}"
     puts markdown
     puts "EOF"
+    puts ""
   end
-
-  puts '========= Remove this line and below ========='
-  puts "||\n" * 10
 end
