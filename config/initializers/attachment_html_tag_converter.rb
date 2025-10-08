@@ -18,19 +18,33 @@ module ReverseMarkdown
 
   module Converters
     class Base
-      def treat_children(node, state, attachables: [], article_slug: nil)
+      def treat_children(node, state, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        article_slug ||= state[:article_slug]
+
         node.children.inject(+'') do |memo, child|
           memo << treat(child, state, attachables: attachables, article_slug: article_slug)
         end
       end
 
-      def treat(node, state, attachables: [], article_slug: nil)
-        ReverseMarkdown::Converters.lookup(node.name).convert(node, state, attachables: attachables, article_slug: article_slug)
+      def treat(node, state, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        article_slug ||= state[:article_slug]
+
+        ReverseMarkdown::Converters.lookup(node.name).convert(
+          node,
+          state,
+          attachables: attachables,
+          article_slug: article_slug
+        )
       end
     end
 
     class Bypass < Base
-      def convert(node, state = {}, attachables: [], article_slug: nil)
+      def convert(node, state = {}, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        article_slug ||= state[:article_slug]
+        state = state.merge(attachables: attachables, article_slug: article_slug)
         treat_children(node, state, attachables: attachables, article_slug: article_slug)
       end
     end
@@ -110,14 +124,15 @@ module ReverseMarkdown
       end
     end
 
-    # TODO: Here the name ActionTextAttachment did not seem to work, but it would be cleaner to have ActionTextAttachment
-    class Richtext < Base
-      def convert(node, state = {}, attachables: [], article_slug: nil)
+    # Converter for our attachment placeholder tag used during legacy runs
+    class Toto < Base
+      def convert(node, state = {}, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
         # Remove the first item from the mutable object attachables.
-        attachable = attachables.shift
-        case attachable
+        attachable = attachables&.shift
+        case attachable.class
         when ActiveStorage::Blob
-          "<Image src=\"images/#{article_slug}/#{attachables.first.filename}\" alt=\"#{attachables.first.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
+          "<Image src=\"/images/#{article_slug}/#{attachable.filename}\" alt=\"#{attachable.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
         when Embed
           if attachable.url.match?(/(?:youtube|youtu\.be)/)
             "<Youtube videoId=\"#{attachable.url.match(%r{(?:youtube\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^&\n]{11})})[1]}\"/>"
@@ -130,10 +145,38 @@ module ReverseMarkdown
       end
     end
 
+    # Proper converter for ActionText attachments (<action-text-attachment ...>)
+    class ActionTextAttachment < Base
+      def convert(node, state = {}, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        attachable = attachables&.shift
+        case attachable
+        when ActiveStorage::Blob
+          "<Image src=\"/images/#{article_slug}/#{attachable.filename}\" alt=\"#{attachable.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
+        when Embed
+          if attachable.url.match?(/(?:youtube|youtu\.be)/)
+            "<Youtube videoId=\"#{attachable.url.match(%r{(?:youtube\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^&\n]{11})})[1]}\"/>"
+          else
+            "<Tweet tweet_url=\"#{attachable.url}\"/>"
+          end
+        else
+          ''
+        end
+      end
+    end
+
     class Iframe < Base
       def convert(node, state = {}, attachables: [], article_slug: nil)
         extract_src(node)
       end
+    end
+
+    # Minimal helper to return iframe src as a link
+    def extract_src(node)
+      src = node['src']
+      return '' if src.to_s.empty?
+
+      "<Link href=\"#{src}\" >#{src}</Link>"
     end
 
     class H < Base
@@ -301,7 +344,9 @@ module ReverseMarkdown
     register :ol, Ol.new
     register :ul, Ol.new
     register :pre, Pre.new
-    register :richtext, Richtext.new
+    register :toto, Toto.new
+    # Register the real ActionText tag as well
+    register :'action-text-attachment', ActionTextAttachment.new
     register :strong, Strong.new
     register :b, Strong.new
     register :text, Text.new
