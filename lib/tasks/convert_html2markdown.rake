@@ -42,9 +42,6 @@ task convert_html2markdown: :environment do
     HEADER
     # Convert the ActionText HTML as-is; custom converters handle attachments
     content = article.content.body.to_html
-    print " _\\|\n " * 5
-    puts " _\\|   Here we go : #{attachables} "
-    print " _\\|\n " * 5
     markdown = "#{header}\n#{ReverseMarkdown.convert(content, attachables: attachables, article_slug: article_slug)}"
     puts "cat <<'EOF' > #{Shellwords.escape(md_path)}"
     puts markdown
