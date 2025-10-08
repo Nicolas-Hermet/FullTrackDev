@@ -18,19 +18,33 @@ module ReverseMarkdown
 
   module Converters
     class Base
-      def treat_children(node, state, attachables: [], article_slug: nil)
+      def treat_children(node, state, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        article_slug ||= state[:article_slug]
+
         node.children.inject(+'') do |memo, child|
           memo << treat(child, state, attachables: attachables, article_slug: article_slug)
         end
       end
 
-      def treat(node, state, attachables: [], article_slug: nil)
-        ReverseMarkdown::Converters.lookup(node.name).convert(node, state, attachables: attachables, article_slug: article_slug)
+      def treat(node, state, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        article_slug ||= state[:article_slug]
+
+        ReverseMarkdown::Converters.lookup(node.name).convert(
+          node,
+          state,
+          attachables: attachables,
+          article_slug: article_slug
+        )
       end
     end
 
     class Bypass < Base
-      def convert(node, state = {}, attachables: [], article_slug: nil)
+      def convert(node, state = {}, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        article_slug ||= state[:article_slug]
+        state = state.merge(attachables: attachables, article_slug: article_slug)
         treat_children(node, state, attachables: attachables, article_slug: article_slug)
       end
     end
@@ -112,9 +126,10 @@ module ReverseMarkdown
 
     # Converter for our attachment placeholder tag used during legacy runs
     class Toto < Base
-      def convert(node, state = {}, attachables: [], article_slug: nil)
+      def convert(node, state = {}, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
         # Remove the first item from the mutable object attachables.
-        attachable = attachables.shift
+        attachable = attachables&.shift
         case attachable.class
         when ActiveStorage::Blob
           "<Image src=\"/images/#{article_slug}/#{attachable.filename}\" alt=\"#{attachable.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
@@ -132,11 +147,9 @@ module ReverseMarkdown
 
     # Proper converter for ActionText attachments (<action-text-attachment ...>)
     class ActionTextAttachment < Base
-      def convert(node, state = {}, attachables: [], article_slug: nil)
-        attachable = attachables.shift
-        print " _\\|\n " * 5
-        puts " _\\|   Here we go : #{attachables} "
-        print " _\\|\n " * 5
+      def convert(node, state = {}, attachables: nil, article_slug: nil)
+        attachables ||= state[:attachables]
+        attachable = attachables&.shift
         case attachable
         when ActiveStorage::Blob
           "<Image src=\"/images/#{article_slug}/#{attachable.filename}\" alt=\"#{attachable.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
