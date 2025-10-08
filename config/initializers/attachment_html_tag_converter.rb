@@ -133,6 +133,9 @@ module ReverseMarkdown
     # Proper converter for ActionText attachments (<action-text-attachment ...>)
     class ActionTextAttachment < Base
       def convert(node, state = {}, attachables: [], article_slug: nil)
+        print " _\\|\n " * 5
+        puts " _\\|   Here we go : #{attachable} "
+        print " _\\|\n " * 5
         attachable = attachables.shift
         case attachable
         when ActiveStorage::Blob
@@ -159,6 +162,7 @@ module ReverseMarkdown
     def extract_src(node)
       src = node['src']
       return '' if src.to_s.empty?
+
       "<Link href=\"#{src}\" >#{src}</Link>"
     end
 
