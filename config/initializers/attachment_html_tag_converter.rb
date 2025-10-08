@@ -133,10 +133,10 @@ module ReverseMarkdown
     # Proper converter for ActionText attachments (<action-text-attachment ...>)
     class ActionTextAttachment < Base
       def convert(node, state = {}, attachables: [], article_slug: nil)
-        print " _\\|\n " * 5
-        puts " _\\|   Here we go : #{attachable} "
-        print " _\\|\n " * 5
         attachable = attachables.shift
+        print " _\\|\n " * 5
+        puts " _\\|   Here we go : #{attachables} "
+        print " _\\|\n " * 5
         case attachable
         when ActiveStorage::Blob
           "<Image src=\"/images/#{article_slug}/#{attachable.filename}\" alt=\"#{attachable.filename.as_json}\" width=\"#{node['width']}\" height=\"#{node['height']}\" caption=\"#{node['caption']}\"/>"
