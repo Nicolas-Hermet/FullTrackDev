@@ -111,7 +111,7 @@ module ReverseMarkdown
     end
 
     # TODO: Here the name ActionTextAttachment did not seem to work, but it would be cleaner to have ActionTextAttachment
-    class Richtext < Base
+    class Toto < Base
       def convert(node, state = {}, attachables: [], article_slug: nil)
         # Remove the first item from the mutable object attachables.
         attachable = attachables.shift
@@ -301,7 +301,7 @@ module ReverseMarkdown
     register :ol, Ol.new
     register :ul, Ol.new
     register :pre, Pre.new
-    register :richtext, Richtext.new
+    register :toto, Toto.new
     register :strong, Strong.new
     register :b, Strong.new
     register :text, Text.new

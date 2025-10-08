@@ -40,7 +40,7 @@ task convert_html2markdown: :environment do
       category: "#{article.category}"
       ---
     HEADER
-    content = article.content.body.to_html.gsub('action-text-attachment', 'richtext') # TODO: This is an ugly trick for the reversed markdown gem to work. It should be just `article.content.body.to_html`
+    content = article.content.body.to_html.gsub('action-text-attachment', 'toto') # TODO: This is an ugly trick for the reversed markdown gem to work. It should be just `article.content.body.to_html`
     markdown = "#{header}\n#{ReverseMarkdown.convert(content, attachables: attachables, article_slug: article_slug)}"
     puts "cat <<'EOF' > #{Shellwords.escape(md_path)}"
     puts markdown
